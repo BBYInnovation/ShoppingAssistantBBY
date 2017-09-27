@@ -5,7 +5,7 @@
 const ApiAiApp = require('actions-on-google').ApiAiApp;
 const bodyParser = require('body-parser');
 
-const app = new ApiAiApp({request: request, response: response});
+const app = new ApiAiApp({request, response});
 const WELCOME_INTENT = 'input.welcome';
 const NUMBER_INTENT = 'input.number';
 
