@@ -18,8 +18,8 @@ app.use(express.static('public'));
 /*
 * HTTP Cloud Function.
 */
-app.post('/helloHttp', function(req, res) {
-  const appAi = new ApiAiApp({request: request, response: response});
+app.post('/helloHttp', function(request, response) {
+  const appAi = new ApiAiApp({request, response});
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
   actionMap.set(PRINTER, buyPrinter);
