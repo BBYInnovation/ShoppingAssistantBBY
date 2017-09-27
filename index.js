@@ -20,6 +20,7 @@ app.use(express.static('public'));
 * HTTP Cloud Function.
 */
 app.post('/helloHttp', function(request, response) {
+  console.log("Inside /helloHttp");
   const appAi = new ApiAiApp({request: request, response: response});
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
