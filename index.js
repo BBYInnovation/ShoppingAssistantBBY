@@ -39,10 +39,11 @@ app.listen(app.get('port'), function() {
 
 
 function welcomeIntent (appAi) {
-  appAi.ask('I am your virtual In-Home Assistant. I can help you choose your home appliances. How may I help you today?');
+  appAi.tell('I am your virtual In-Home Assistant. I can help you choose your home appliances. How may I help you today?');
 }
 
 function buyPrinter (appAi) {
+  appAi.tell('Sure, I can help you with that.');
   appAi.ask('Do you want this for home use or office use?');
 
 }
