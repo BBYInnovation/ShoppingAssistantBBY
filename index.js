@@ -9,7 +9,7 @@ const
 var app = express();
 
 const WELCOME_INTENT = 'input.welcome';
-const NUMBER_INTENT = 'input.number';
+const PRINTER = 'input.printer';
 
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
