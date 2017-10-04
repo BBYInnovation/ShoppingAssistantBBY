@@ -24,7 +24,7 @@ app.post('/helloHttp', function(request, response) {
   const appAi = new ApiAiApp({request: request, response: response});
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
-  actionMap.set(PRINTER, buyPrinter);
+  actionMap.set(PRINTER, choosePrinterType);
   appAi.handleRequest(actionMap);
 });
 
@@ -51,16 +51,20 @@ function buyPrinter (appAi) {
 }
 
 function choosePrinterType (app) {
-  app.askWithCarousel('Sure, I can help you with that.',
-    app.buildCarousel()
-     .addItems([
-       app.buildOptionItem('HOME_PRINTER',
-         ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
-         .setTitle('Home Printer'),
-       app.buildOptionItem('OFFICE_PRINTER',
-         ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
-         .setTitle('Office Printer'),
-     ]));
+  app.ask(app.buildRichResponse()
+    // Create a basic card and add it to the rich response
+
+    .addSimpleResponse('Math and prime numbers it is!')
+    .addBasicCard(app.buildBasicCard(`42 is an even composite number. It
+      is composed of three distinct prime numbers multiplied together. It
+      has a total of eight divisors. 42 is an abundant number, because the
+      sum of its proper divisors 54 is greater than itself. To count from
+      1 to 42 would take you about twenty-one…`)
+      .setTitle('Math & prime numbers')
+      .addButton('Read more', 'https://example.google.com/mathandprimes')
+      .setImage('https://example.google.com/42.png', 'Image alternate text')
+    )
+  );
 }
 
 module.exports = app;
