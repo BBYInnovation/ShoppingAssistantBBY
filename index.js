@@ -57,8 +57,8 @@ function choosePrinterType (appAi) {
       sum of its proper divisors 54 is greater than itself. To count from
       1 to 42 would take you about twenty-one…`)
       .setTitle('Math & prime numbers')
-      .addButton('Read more', 'https://example.google.com/mathandprimes')
-      .setImage('https://example.google.com/42.png', 'Image alternate text')
+      .addButton('Read more', 'https://goshopping-130590.herokuapp.com/assets/rift.png')
+      .setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Image alternate text')
     )
   );
 }
