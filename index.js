@@ -40,11 +40,12 @@ app.listen(app.get('port'), function() {
 
 
 function welcomeIntent (appAi) {
+  console.log("Inside welcomeIntent");
   appAi.tell('I am your BestBuy virtual In-Home Assistant. I can help you choose your home appliances. How may I help you today?');
 }
 
 function buyPrinter (appAi) {
-  //appAi.tell('Sure, I can help you with that.');
+  console.log("Inside buyPrinter");
   appAi.ask('Sure, I can help you with that. \nDo you want this for home use or office use?');
 
 }
