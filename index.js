@@ -64,7 +64,8 @@ function choosePrinterType (appAi) {
       .setTitle('Math & prime numbers')
       .setDescription('42 is an abundant number because the sum of its ' +
         'proper divisors 54 is greater…')
-      //.setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Math & prime numbers'))
+      //.setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Math & prime numbers')
+    )
     // Add the second item to the list
     .addItems(appAi.buildOptionItem('EGYPT',
       ['religion', 'egpyt', 'ancient egyptian'])
