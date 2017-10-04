@@ -64,14 +64,14 @@ function choosePrinterType (appAi) {
       .setTitle('Math & prime numbers')
       .setDescription('42 is an abundant number because the sum of its ' +
         'proper divisors 54 is greater…')
-      .setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Math & prime numbers'))
+      //.setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Math & prime numbers'))
     // Add the second item to the list
     .addItems(appAi.buildOptionItem('EGYPT',
       ['religion', 'egpyt', 'ancient egyptian'])
       .setTitle('Ancient Egyptian religion')
       .setDescription('42 gods who ruled on the fate of the dead in the ' +
         'afterworld. Throughout the under…')
-      .setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Egypt')
+      //.setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Egypt')
     )
     // Add third item to the list
     .addItems(appAi.buildOptionItem('RECIPES',
@@ -79,7 +79,7 @@ function choosePrinterType (appAi) {
       .setTitle('42 recipes with 42 ingredients')
       .setDescription('Here\'s a beautifully simple recipe that\'s full ' +
         'of flavor! All you need is some ginger and…')
-      .setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Recipe')
+      //.setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Recipe')
     )
   );
 }
