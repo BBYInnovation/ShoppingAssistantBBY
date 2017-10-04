@@ -24,7 +24,7 @@ app.post('/helloHttp', function(request, response) {
   const appAi = new ApiAiApp({request: request, response: response});
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
-  actionMap.set(PRINTER, choosePrinterType);
+  actionMap.set(PRINTER, buyPrinter);
   appAi.handleRequest(actionMap);
 });
 
@@ -52,37 +52,7 @@ function buyPrinter (appAi) {
 
 function choosePrinterType (appAi) {
   console.log("Inside choosePrinterType")
-  appAi.askWithList(appAi.buildRichResponse()
-    .addSimpleResponse('Alright')
-    .addSuggestions(
-      ['Basic Card', 'List', 'Carousel', 'Suggestions']),
-    // Build a list
-    appAi.buildList('Things to learn about')
-    // Add the first item to the list
-    .addItems(appAi.buildOptionItem('MATH_AND_PRIME',
-      ['math', 'math and prime', 'prime numbers', 'prime'])
-      .setTitle('Math & prime numbers')
-      .setDescription('42 is an abundant number because the sum of its ' +
-        'proper divisors 54 is greater…')
-      //.setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Math & prime numbers')
-    )
-    // Add the second item to the list
-    .addItems(appAi.buildOptionItem('EGYPT',
-      ['religion', 'egpyt', 'ancient egyptian'])
-      .setTitle('Ancient Egyptian religion')
-      .setDescription('42 gods who ruled on the fate of the dead in the ' +
-        'afterworld. Throughout the under…')
-      //.setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Egypt')
-    )
-    // Add third item to the list
-    .addItems(appAi.buildOptionItem('RECIPES',
-      ['recipes', 'recipe', '42 recipes'])
-      .setTitle('42 recipes with 42 ingredients')
-      .setDescription('Here\'s a beautifully simple recipe that\'s full ' +
-        'of flavor! All you need is some ginger and…')
-      //.setImage('https://goshopping-130590.herokuapp.com/assets/rift.png', 'Recipe')
-    )
-  );
+
 }
 
 module.exports = app;
