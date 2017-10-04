@@ -46,8 +46,7 @@ function welcomeIntent (appAi) {
 
 function buyPrinter (appAi) {
   console.log("Inside buyPrinter");
-  appAi.ask('Sure, I can help you with that. \nDo you want this for');
-  ,['home use', 'office use']);
+  appAi.ask('Sure, I can help you with that. \nDo you want this for',['home use', 'office use']);
 
 }
 
