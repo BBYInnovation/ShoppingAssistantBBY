@@ -24,7 +24,7 @@ app.post('/helloHttp', function(request, response) {
   const appAi = new ApiAiApp({request: request, response: response});
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
-  actionMap.set(PRINTER, buyPrinter);
+  actionMap.set(PRINTER, choosePrinterType);
   appAi.handleRequest(actionMap);
 });
 
@@ -46,8 +46,22 @@ function welcomeIntent (appAi) {
 
 function buyPrinter (appAi) {
   console.log("Inside buyPrinter");
-  appAi.ask('Sure, I can help you with that. \nDo you want this for home use or office use?');
+  appAi.ask('Sure, I can help you with that. \nDo you want this for');
+  ,['home use', 'office use']);
 
+}
+
+function choosePrinterType (app) {
+  app.askWithCarousel('Sure, I can help you with that.',
+    app.buildCarousel()
+     .addItems([
+       app.buildOptionItem(HOME_PRINTER,
+         ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
+         .setTitle('Home Printer'),
+       app.buildOptionItem(OFFICE_PRINTER,
+         ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
+         .setTitle('Office Printer'),
+     ]));
 }
 
 module.exports = app;
