@@ -24,7 +24,7 @@ app.post('/helloHttp', function(request, response) {
   const appAi = new ApiAiApp({request: request, response: response});
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
-  actionMap.set(PRINTER, choosePrinterType);
+  actionMap.set(PRINTER, buyPrinter);
   appAi.handleRequest(actionMap);
 });
 
