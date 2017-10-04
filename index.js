@@ -50,8 +50,8 @@ function buyPrinter (appAi) {
 
 }
 
-function choosePrinterType (app) {
-  appAi.ask(app.buildRichResponse().addBasicCard(app.buildBasicCard(`42 is an even composite number. It
+function choosePrinterType (appAi) {
+  appAi.ask(appAi.buildRichResponse().addBasicCard(appAi.buildBasicCard(`42 is an even composite number. It
       is composed of three distinct prime numbers multiplied together. It
       has a total of eight divisors. 42 is an abundant number, because the
       sum of its proper divisors 54 is greater than itself. To count from
