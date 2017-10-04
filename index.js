@@ -54,10 +54,10 @@ function choosePrinterType (app) {
   app.askWithCarousel('Sure, I can help you with that.',
     app.buildCarousel()
      .addItems([
-       app.buildOptionItem('HOME_PRINTER',
+       app.buildOptionItem(HOME_PRINTER,
          ['synonym of KEY_ONE 1', 'synonym of KEY_ONE 2'])
          .setTitle('Home Printer'),
-       app.buildOptionItem('OFFICE_PRINTER',
+       app.buildOptionItem(OFFICE_PRINTER,
          ['synonym of KEY_TWO 1', 'synonym of KEY_TWO 2'])
          .setTitle('Office Printer'),
      ]));
