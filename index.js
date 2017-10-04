@@ -54,7 +54,7 @@ function choosePrinterType (app) {
   app.ask(app.buildRichResponse()
     // Create a basic card and add it to the rich response
 
-    .addSimpleResponse('Math and prime numbers it is!')
+    //.addSimpleResponse('Math and prime numbers it is!')
     .addBasicCard(app.buildBasicCard(`42 is an even composite number. It
       is composed of three distinct prime numbers multiplied together. It
       has a total of eight divisors. 42 is an abundant number, because the
