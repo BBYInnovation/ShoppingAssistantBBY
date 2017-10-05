@@ -11,7 +11,7 @@ var app = express();
 const WELCOME_INTENT = 'input.welcome';
 const PRINTER = 'input.printer';
 const PAGE_ACCESS_TOKEN = 'EAABrwqlWAPwBALcI3btkbhDnPAjM2aM5mRAwLhguPpZBNcfkTwjKMk5sYJoX7G73D4NVgdTqQLMVele1ZA9uwKpEFGlyTZC0sKG8AiWQgh0vvHvi097smF35tQ8nTZBV82zn6IShX3woZApBoBN0Eo5LCBjVNUAh2j4lK4ZCeUmQZDZD';
-const senderID = '';
+var senderID = '';
 
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
