@@ -17,6 +17,7 @@ const WIFITYPE = 'Printer.UseType.ModerateUse.ScanType.WifiType';
 const PRODUCT_SELECTED = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected';
 const CHECKOUT = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut';
 const END = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut.End';
+const NAME = 'action.name';
 
 const PAGE_ACCESS_TOKEN = 'EAABrwqlWAPwBALcI3btkbhDnPAjM2aM5mRAwLhguPpZBNcfkTwjKMk5sYJoX7G73D4NVgdTqQLMVele1ZA9uwKpEFGlyTZC0sKG8AiWQgh0vvHvi097smF35tQ8nTZBV82zn6IShX3woZApBoBN0Eo5LCBjVNUAh2j4lK4ZCeUmQZDZD';
 var senderID = '';
@@ -51,6 +52,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(PRODUCT_SELECTED, productSelected);
   actionMap.set(CHECKOUT, checkOut);
   actionMap.set(END, endIntent);
+  actionMap.set(NAME, getName);
 
   appAi.handleRequest(actionMap);
 });
@@ -64,6 +66,27 @@ app.get('/', function(request, response) {
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
+
+function getName (app) {
+  console.log("Inside getName");
+  app.ask(app.buildRichResponse()
+    .addSimpleResponse({speech: 'Howdy! I can tell you fun facts about ' +
+        'almost any number like 0, 42, or 100. What number do you have ' +
+        'in mind?',
+      displayText: 'Howdy! I can tell you fun facts about almost any ' +
+        'number. What number do you have in mind?'})
+    .addSuggestions(
+      ['0', '42', '100', 'Never mind'])
+    .addSuggestionLink('Suggestion Link', 'https://assistant.google.com/')
+  );
+}
+
+
+
+
+
+
+
 
 
 function welcomeIntent (appAi) {
@@ -82,33 +105,33 @@ function chooseUseType (appAi) {
 }
 
 function chooseModerateUse (appAi) {
-  console.log("Inside chooseUseType")
+  console.log("Inside chooseModerateUse")
   appAi.tell('Would you also want the printer to scan pages?');
 }
 
 function chooseScanType (appAi) {
-  console.log("Inside chooseUseType")
+  console.log("Inside chooseScanType")
   appAi.tell('Do you need the printer to print over the WiFi?');
 }
 
 function chooseWiFiType (appAi) {
-  console.log("Inside chooseUseType")
+  console.log("Inside chooseWiFiType")
   appAi.tell('Check this printer model which matches your criteria! Can I add this to your Best Buy cart?');
   sendGenericMessage(senderID);
 }
 
 function productSelected (appAi) {
-  console.log("Inside chooseUseType")
+  console.log("Inside productSelected")
   appAi.tell('Great! Product added to your BestBuy cart. Can I checkout this item for you?');
 }
 
 function checkOut (appAi) {
-  console.log("Inside chooseUseType")
+  console.log("Inside checkOut")
   appAi.tell('Item checked out. Is there anything else I can help you with?');
 }
 
 function endIntent (appAi) {
-  console.log("Inside chooseUseType")
+  console.log("Inside endIntent")
   appAi.tell('Thanks for shopping with Best Buy. Have a great day!');
 }
 
