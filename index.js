@@ -10,6 +10,8 @@ var app = express();
 
 const WELCOME_INTENT = 'input.welcome';
 const PRINTER = 'input.printer';
+const PAGE_ACCESS_TOKEN = 'EAABrwqlWAPwBALcI3btkbhDnPAjM2aM5mRAwLhguPpZBNcfkTwjKMk5sYJoX7G73D4NVgdTqQLMVele1ZA9uwKpEFGlyTZC0sKG8AiWQgh0vvHvi097smF35tQ8nTZBV82zn6IShX3woZApBoBN0Eo5LCBjVNUAh2j4lK4ZCeUmQZDZD';
+const senderID;
 
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
@@ -27,7 +29,7 @@ app.post('/helloHttp', function(request, response) {
   var data = req.originalRequest.data;
   console.log("data: ", data);
 
-  var senderID = data.sender.id;
+  senderID = data.sender.id;
   console.log("SenderID: ", senderID);
 
   const appAi = new ApiAiApp({request: request, response: response});
@@ -55,13 +57,86 @@ function welcomeIntent (appAi) {
 
 function buyPrinter (appAi) {
   console.log("Inside buyPrinter");
-  appAi.ask('Sure, I can help you with that. \nDo you want this for',['home use', 'office use']);
-
+  console.log("buyPrinter SenderID: ", senderID);
+  //appAi.ask('Sure, I can help you with that. \nDo you want this for',['home use', 'office use']);
+  sendGenericMessage(senderID);
 }
 
 function choosePrinterType (appAi) {
   console.log("Inside choosePrinterType")
 
 }
+
+function sendGenericMessage(recipientId) {
+  console.log("RecipientID: ", recipientId)
+  var messageData = {
+    recipient: {
+      id: recipientId
+    },
+    message: {
+      attachment: {
+        type: "template",
+        payload: {
+          template_type: "generic",
+          elements: [{
+            title: "rift",
+            subtitle: "Next-generation virtual reality",
+            item_url: "https://www.oculus.com/en-us/rift/",
+            image_url: SERVER_URL + "/assets/rift.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://www.oculus.com/en-us/rift/",
+              title: "Open Web URL"
+            }, {
+              type: "postback",
+              title: "Call Postback",
+              payload: "Payload for first bubble",
+            }],
+          }, {
+            title: "touch",
+            subtitle: "Your Hands, Now in VR",
+            item_url: "https://www.oculus.com/en-us/touch/",
+            image_url: SERVER_URL + "/assets/touch.png",
+            buttons: [{
+              type: "web_url",
+              url: "https://www.oculus.com/en-us/touch/",
+              title: "Open Web URL"
+            }, {
+              type: "postback",
+              title: "Call Postback",
+              payload: "Payload for second bubble",
+            }]
+          }]
+        }
+      }
+    }
+  };
+  callSendAPI(messageData);
+  }
+
+  function callSendAPI(messageData) {
+    request({
+      uri: 'https://graph.facebook.com/v2.6/me/messages',
+      qs: { access_token: PAGE_ACCESS_TOKEN },
+      method: 'POST',
+      json: messageData
+
+    }, function (error, response, body) {
+      if (!error && response.statusCode == 200) {
+        var recipientId = body.recipient_id;
+        var messageId = body.message_id;
+
+        if (messageId) {
+          console.log("Successfully sent message with id %s to recipient %s",
+            messageId, recipientId);
+        } else {
+        console.log("Successfully called Send API for recipient %s",
+          recipientId);
+        }
+      } else {
+        console.error("Failed calling Send API", response.statusCode, response.statusMessage, body.error);
+      }
+    });
+  }
 
 module.exports = app;
