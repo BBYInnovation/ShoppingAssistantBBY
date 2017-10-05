@@ -9,7 +9,15 @@ const
 var app = express();
 
 const WELCOME_INTENT = 'input.welcome';
-const PRINTER = 'input.printer';
+const PRINTER = 'ProductPrinter';
+const USETYPE = 'Printer.UseType';
+const MODERATEUSE = 'Printer.UseType.ModerateUse';
+const SCANTYPE = 'Printer.UseType.ModerateUse.ScanType';
+const WIFITYPE = 'Printer.UseType.ModerateUse.ScanType.WifiType';
+const PRODUCT_SELECTED = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected';
+const CHECKOUT = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut';
+const END = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut.End';
+
 const PAGE_ACCESS_TOKEN = 'EAABrwqlWAPwBALcI3btkbhDnPAjM2aM5mRAwLhguPpZBNcfkTwjKMk5sYJoX7G73D4NVgdTqQLMVele1ZA9uwKpEFGlyTZC0sKG8AiWQgh0vvHvi097smF35tQ8nTZBV82zn6IShX3woZApBoBN0Eo5LCBjVNUAh2j4lK4ZCeUmQZDZD';
 var senderID = '';
 
@@ -35,7 +43,15 @@ app.post('/helloHttp', function(request, response) {
   const appAi = new ApiAiApp({request: request, response: response});
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
-  actionMap.set(PRINTER, buyPrinter);
+  actionMap.set(PRINTER, productPrinter);
+  actionMap.set(USETYPE, chooseUseType);
+  actionMap.set(MODERATEUSE, chooseModerateUse);
+  actionMap.set(SCANTYPE, chooseScanType);
+  actionMap.set(WIFITYPE, chooseWiFiType);
+  actionMap.set(PRODUCT_SELECTED, productSelected);
+  actionMap.set(CHECKOUT, checkOut);
+  actionMap.set(END, endIntent);
+
   appAi.handleRequest(actionMap);
 });
 
@@ -55,17 +71,50 @@ function welcomeIntent (appAi) {
   appAi.tell('I am your BestBuy virtual In-Home Assistant. I can help you choose your home appliances. How may I help you today?');
 }
 
-function buyPrinter (appAi) {
-  console.log("Inside buyPrinter");
-  console.log("buyPrinter SenderID: ", senderID);
-  //appAi.ask('Sure, I can help you with that. \nDo you want this for',['home use', 'office use']);
+function productPrinter (appAi) {
+  console.log("Inside productPrinter");
+  appAi.tell('Sure. I can help you with that. Do you want it for Home Use or Office Use?');
+}
+
+function chooseUseType (appAi) {
+  console.log("Inside chooseUseType")
+  appAi.tell('Cool. Would you print a lot every day? Like more than 50 pages per week?');
+}
+
+function chooseModerateUse (appAi) {
+  console.log("Inside chooseUseType")
+  appAi.tell('Would you also want the printer to scan pages?');
+}
+
+function chooseScanType (appAi) {
+  console.log("Inside chooseUseType")
+  appAi.tell('Do you need the printer to print over the WiFi?');
+}
+
+function chooseWiFiType (appAi) {
+  console.log("Inside chooseUseType")
+  appAi.tell('Check this printer model which matches your criteria! Can I add this to your Best Buy cart?');
   sendGenericMessage(senderID);
 }
 
-function choosePrinterType (appAi) {
-  console.log("Inside choosePrinterType")
-
+function productSelected (appAi) {
+  console.log("Inside chooseUseType")
+  appAi.tell('Great! Product added to your BestBuy cart. Can I checkout this item for you?');
 }
+
+function checkOut (appAi) {
+  console.log("Inside chooseUseType")
+  appAi.tell('Item checked out. Is there anything else I can help you with?');
+}
+
+function endIntent (appAi) {
+  console.log("Inside chooseUseType")
+  appAi.tell('Thanks for shopping with Best Buy. Have a great day!');
+}
+
+
+
+
 
 function sendGenericMessage(recipientId) {
   console.log("RecipientID: ", recipientId)
@@ -80,32 +129,14 @@ function sendGenericMessage(recipientId) {
           template_type: "generic",
           elements: [{
             title: "rift",
-            subtitle: "Next-generation virtual reality",
-            item_url: "https://www.oculus.com/en-us/rift/",
-            image_url: "https://goshopping-130590.herokuapp.com/assets/rift.png",
+            subtitle: "Printer",
+            item_url: "https://www.bestbuy.com/site/hp-officejet-pro-6978-wireless-all-in-one-instant-ink-ready-printer/5119600.p?skuId=5119600",
+            image_url: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5119/5119600_sd.jpg;maxHeight=550;maxWidth=642",
             buttons: [{
               type: "web_url",
-              url: "https://www.oculus.com/en-us/rift/",
+              url: "https://www.bestbuy.com/site/hp-officejet-pro-6978-wireless-all-in-one-instant-ink-ready-printer/5119600.p?skuId=5119600",
               title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for first bubble",
             }],
-          }, {
-            title: "touch",
-            subtitle: "Your Hands, Now in VR",
-            item_url: "https://www.oculus.com/en-us/touch/",
-            image_url:"https://goshopping-130590.herokuapp.com/assets/touch.png",
-            buttons: [{
-              type: "web_url",
-              url: "https://www.oculus.com/en-us/touch/",
-              title: "Open Web URL"
-            }, {
-              type: "postback",
-              title: "Call Postback",
-              payload: "Payload for second bubble",
-            }]
           }]
         }
       }
