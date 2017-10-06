@@ -18,6 +18,7 @@ const PRODUCT_SELECTED = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductS
 const CHECKOUT = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut';
 const END = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut.End';
 const NAME = 'action.name';
+const GETNAME = 'input.name';
 
 const PAGE_ACCESS_TOKEN = 'EAABrwqlWAPwBALcI3btkbhDnPAjM2aM5mRAwLhguPpZBNcfkTwjKMk5sYJoX7G73D4NVgdTqQLMVele1ZA9uwKpEFGlyTZC0sKG8AiWQgh0vvHvi097smF35tQ8nTZBV82zn6IShX3woZApBoBN0Eo5LCBjVNUAh2j4lK4ZCeUmQZDZD';
 var senderID = '';
@@ -53,6 +54,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(CHECKOUT, checkOut);
   actionMap.set(END, endIntent);
   actionMap.set(NAME, getName);
+  actionMap.set(GETNAME, selectedName);
 
   appAi.handleRequest(actionMap);
 });
@@ -80,9 +82,12 @@ function getName (app) {
       ['0', '42', '100', 'Never mind'])
     .addSuggestionLink('Suggestion Link', 'https://assistant.google.com/')
   );*/
+  app.setContext('input.name', 5);
 }
 
-
+function selectedName(app) {
+  console.log("Inside selectedName");
+}
 
 
 
