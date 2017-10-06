@@ -222,31 +222,7 @@ function chooseWiFiType (appAi) {
   console.log("Inside chooseWiFiType")
   //appAi.tell('Check this printer model which matches your criteria! Can I add this to your Best Buy cart?');
   sendGenericMessage(senderID);
-  var messageData = {
-    recipient: {
-      id: senderID
-    },
-    "message":{
-      "text": "Check this printer model which matches your criteria! \nCan I add this to your Best Buy cart?",
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"YES",
-          "payload":"PRINTER_SELECT_YES"
-        },
-        {
-          "content_type":"text",
-          "title":"NO",
-          "payload":"PRINTER_SELECT_NO"
-        },
-        {
-          "content_type":"text",
-          "title":"Show More",
-          "payload":"PRINTER_SELECT_SHOW_MORE"
-        }]
-    }
-  };
-  callSendAPI(messageData);
+
 }
 
 function productSelected (appAi) {
@@ -313,6 +289,32 @@ function sendGenericMessage(recipientId) {
           }]
         }
       }
+    }
+  };
+  callSendAPI(messageData);
+
+  messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Check this printer model which matches your criteria! \nCan I add this to your Best Buy cart?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"YES",
+          "payload":"PRINTER_SELECT_YES"
+        },
+        {
+          "content_type":"text",
+          "title":"NO",
+          "payload":"PRINTER_SELECT_NO"
+        },
+        {
+          "content_type":"text",
+          "title":"Show More",
+          "payload":"PRINTER_SELECT_SHOW_MORE"
+        }]
     }
   };
   callSendAPI(messageData);
