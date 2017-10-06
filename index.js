@@ -111,16 +111,16 @@ function productPrinter (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Sure. I can help you with that. Do you want it for",
+      "text": "Sure. I can help you with that. \n How do you plan on using it?",
       "quick_replies":[
         {
           "content_type":"text",
-          "title":"Personal Use",
+          "title":"For Personal purpose",
           "payload":"PRINTER_USE_TYPE_PERSONAL"
         },
         {
           "content_type":"text",
-          "title":"Professional Use",
+          "title":"For Professional purpose",
           "payload":"PRINTER_USE_TYPE_PROFESSIONAL"
         }]
     }
