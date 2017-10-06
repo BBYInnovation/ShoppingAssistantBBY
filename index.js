@@ -222,7 +222,31 @@ function chooseWiFiType (appAi) {
   console.log("Inside chooseWiFiType")
   //appAi.tell('Check this printer model which matches your criteria! Can I add this to your Best Buy cart?');
   sendGenericMessage(senderID);
-
+  messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Check this printer model which matches your criteria! \nCan I add this to your Best Buy cart?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"YES",
+          "payload":"PRINTER_SELECT_YES"
+        },
+        {
+          "content_type":"text",
+          "title":"NO",
+          "payload":"PRINTER_SELECT_NO"
+        },
+        {
+          "content_type":"text",
+          "title":"Show More",
+          "payload":"PRINTER_SELECT_SHOW_MORE"
+        }]
+    }
+  };
+  callSendAPI(messageData);
 }
 
 function productSelected (appAi) {
@@ -253,12 +277,12 @@ function productSelected (appAi) {
 
 function checkOut (appAi) {
   console.log("Inside checkOut")
-  appAi.tell('Item checked out. Is there anything else I can help you with?');
+  appAi.tell('Item checked out. \nIs there anything else I can help you with?');
 }
 
 function endIntent (appAi) {
   console.log("Inside endIntent")
-  appAi.tell('Thanks for shopping with Best Buy. Have a great day!');
+  appAi.tell('Thanks for shopping with Best Buy.:) \nHave a great day! ');
 }
 
 
@@ -289,32 +313,6 @@ function sendGenericMessage(recipientId) {
           }]
         }
       }
-    }
-  };
-  callSendAPI(messageData);
-
-  messageData = {
-    recipient: {
-      id: senderID
-    },
-    "message":{
-      "text": "Check this printer model which matches your criteria! \nCan I add this to your Best Buy cart?",
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"YES",
-          "payload":"PRINTER_SELECT_YES"
-        },
-        {
-          "content_type":"text",
-          "title":"NO",
-          "payload":"PRINTER_SELECT_NO"
-        },
-        {
-          "content_type":"text",
-          "title":"Show More",
-          "payload":"PRINTER_SELECT_SHOW_MORE"
-        }]
     }
   };
   callSendAPI(messageData);
