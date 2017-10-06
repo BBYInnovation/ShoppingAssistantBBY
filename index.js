@@ -10,6 +10,7 @@ var app = express();
 
 const WELCOME_INTENT = 'input.welcome';
 const PRINTER = 'ProductPrinter';
+const PRINTER_FALLBACK = 'ProductPrinter.fallback';
 const USETYPE = 'Printer.UseType';
 const USETYPE_FALLBACK = 'Printer.UseType.fallback';
 const MODERATEUSE = 'Printer.UseType.ModerateUse';
@@ -47,8 +48,9 @@ app.post('/helloHttp', function(request, response) {
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
   actionMap.set(PRINTER, productPrinter);
+  actionMap.set(PRINTER_FALLBACK, productPrinterFallback);
   actionMap.set(USETYPE, chooseUseType);
-  actionMap.set(USETYPE_FALLBACK, chooseUseTypeFallback);
+  actionMap.set(PRINTER_FALLBACK, chooseUseTypeFallback);
   actionMap.set(MODERATEUSE, chooseModerateUse);
   actionMap.set(MODERATEUSE_FALLBACK, chooseModerateUse);
   actionMap.set(SCANTYPE, chooseScanType);
@@ -88,6 +90,32 @@ function productPrinter (appAi) {
     },
     "message":{
       "text": "Sure. I can help you with that. \nHow do you plan on using it?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"For Personal use",
+          "payload":"PRINTER_USE_TYPE_PERSONAL"
+        },
+        {
+          "content_type":"text",
+          "title":"For Professional use",
+          "payload":"PRINTER_USE_TYPE_PROFESSIONAL"
+        }]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function productPrinterFallback (appAi) {
+  console.log("Inside productPrinterFallback");
+  //appAi.tell('Sure. I can help you with that. Do you want it for Home Use or Office Use?');
+  var messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Sorry, I didnt get that. \nHow do you plan on using it?",
       "quick_replies":[
         {
           "content_type":"text",
