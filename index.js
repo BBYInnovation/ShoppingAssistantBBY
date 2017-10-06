@@ -257,7 +257,7 @@ function productSelected (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Great! Product added to your BestBuy cart. Can I checkout this item for you?",
+      "text": "Great! Product added to your BestBuy cart. \nCan I checkout this item for you?",
       "quick_replies":[
         {
           "content_type":"text",
