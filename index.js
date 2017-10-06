@@ -105,7 +105,28 @@ function welcomeIntent (appAi) {
 
 function productPrinter (appAi) {
   console.log("Inside productPrinter");
-  appAi.tell('Sure. I can help you with that. Do you want it for Home Use or Office Use?');
+  //appAi.tell('Sure. I can help you with that. Do you want it for Home Use or Office Use?');
+  var messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Sure. I can help you with that. Do you want it for",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Personal Use",
+          "payload":"PRINTER_USE_TYPE_PERSONAL"
+        },
+        {
+          "content_type":"text",
+          "title":"Professional Use",
+          "payload":"PRINTER_USE_TYPE_PROFESSIONAL"
+        }]
+    }
+  };
+
+  callSendAPI(messageData);
 }
 
 function chooseUseType (appAi) {
