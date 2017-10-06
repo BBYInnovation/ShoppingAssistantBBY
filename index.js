@@ -22,6 +22,7 @@ const GETNAME = 'input.name';
 
 const PAGE_ACCESS_TOKEN = 'EAABrwqlWAPwBALcI3btkbhDnPAjM2aM5mRAwLhguPpZBNcfkTwjKMk5sYJoX7G73D4NVgdTqQLMVele1ZA9uwKpEFGlyTZC0sKG8AiWQgh0vvHvi097smF35tQ8nTZBV82zn6IShX3woZApBoBN0Eo5LCBjVNUAh2j4lK4ZCeUmQZDZD';
 var senderID = '';
+var data = '';
 
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
@@ -36,7 +37,7 @@ app.post('/helloHttp', function(request, response) {
   var req = request.body;
   console.log("Req: ", req);
 
-  var data = req.originalRequest.data;
+  data = req.originalRequest.data;
   console.log("data: ", data);
 
   senderID = data.sender.id;
@@ -85,8 +86,9 @@ function getName (app) {
   //app.setContext('Input_Name', 5);
 }
 
-function selectedName(app) {
+function selectedName(appAi) {
   console.log("Inside selectedName");
+  appAi.tell("You have said your name is: " + data.message.quick_reply.payload);
 }
 
 
