@@ -82,7 +82,7 @@ function getName (app) {
       ['0', '42', '100', 'Never mind'])
     .addSuggestionLink('Suggestion Link', 'https://assistant.google.com/')
   );*/
-  app.setContext('input.name', 5);
+  app.setContext('Input_Name', 5);
 }
 
 function selectedName(app) {
