@@ -80,23 +80,6 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-function getName (app) {
-  console.log("Inside getName");
-  app.setContext('Select_Name');
-  sendButtonMessage(senderID);
-  /*app.ask(app.buildRichResponse()
-    .addSimpleResponse({speech: 'Howdy! I can tell you fun facts about ' +
-        'almost any number like 0, 42, or 100. What number do you have ' +
-        'in mind?',
-      displayText: 'Howdy! I can tell you fun facts about almost any ' +
-        'number. What number do you have in mind?'})
-    .addSuggestions(
-      ['0', '42', '100', 'Never mind'])
-    .addSuggestionLink('Suggestion Link', 'https://assistant.google.com/')
-  );*/
-  //app.setContext('Input_Name', 5);
-}
-
 function selectedName(appAi) {
   console.log("Inside selectedName");
   appAi.tell("You have said your name is: " + data.message.quick_reply.payload);
@@ -226,31 +209,7 @@ function chooseWiFiType (appAi) {
   console.log("Inside chooseWiFiType")
   //appAi.tell('Check this printer model which matches your criteria! Can I add this to your Best Buy cart?');
   sendGenericMessage(senderID);
-  messageData = {
-    recipient: {
-      id: senderID
-    },
-    "message":{
-      "text": "I found the below for you. \nCan I add it to cart?",
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"YES",
-          "payload":"PRINTER_SELECT_YES"
-        },
-        {
-          "content_type":"text",
-          "title":"NO",
-          "payload":"PRINTER_SELECT_NO"
-        },
-        {
-          "content_type":"text",
-          "title":"Show More",
-          "payload":"PRINTER_SELECT_SHOW_MORE"
-        }]
-    }
-  };
-  callSendAPI(messageData);
+  setTimeout(sendButtonMessage, 3000);
 }
 
 function productSelected (appAi) {
@@ -323,26 +282,30 @@ function sendGenericMessage(recipientId) {
   }
 
   function sendButtonMessage(recipientId) {
-    var messageData = {
+    messageData = {
       recipient: {
-        id: recipientId
+        id: senderID
       },
       "message":{
-        "text": "Here's a quick reply!",
+        "text": "I found the above for you. \nCan I add it to your cart?",
         "quick_replies":[
           {
             "content_type":"text",
-            "title":"Joe",
-            "payload":"NAME_JOE"
+            "title":"YES",
+            "payload":"PRINTER_SELECT_YES"
           },
           {
             "content_type":"text",
-            "title":"Arun",
-            "payload":"NAME_ARUN"
+            "title":"NO",
+            "payload":"PRINTER_SELECT_NO"
+          },
+          {
+            "content_type":"text",
+            "title":"Show More",
+            "payload":"PRINTER_SELECT_SHOW_MORE"
           }]
       }
     };
-
     callSendAPI(messageData);
   }
 
