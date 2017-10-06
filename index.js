@@ -11,15 +11,14 @@ var app = express();
 const WELCOME_INTENT = 'input.welcome';
 const PRINTER = 'ProductPrinter';
 const USETYPE = 'Printer.UseType';
+const USETYPE_FALLBACK = 'Printer.UseType.fallback';
 const MODERATEUSE = 'Printer.UseType.ModerateUse';
+const MODERATEUSE_FALLBACK = 'Printer.UseType.ModerateUse.fallback';
 const SCANTYPE = 'Printer.UseType.ModerateUse.ScanType';
 const WIFITYPE = 'Printer.UseType.ModerateUse.ScanType.WifiType';
 const PRODUCT_SELECTED = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected';
 const CHECKOUT = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut';
 const END = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut.End';
-const PRINTER_FALLBACK = 'ProductPrinter.fallback';
-const USETYPE_FALLBACK = 'Printer.UseType.fallback';
-const MODERATEUSE_FALLBACK = 'Printer.UseType.ModerateUse.fallback';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
@@ -76,17 +75,6 @@ app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
 
-function selectedName(appAi) {
-  console.log("Inside selectedName");
-  appAi.tell("You have said your name is: " + data.message.quick_reply.payload);
-}
-
-
-
-
-
-
-
 function welcomeIntent (appAi) {
   console.log("Inside welcomeIntent");
   appAi.tell('I am your Best Buy In-Home Assistant. \nAsk me about Electronic Gadgets and Home appliances. \nHow may I help you today?');
@@ -127,6 +115,37 @@ function chooseUseType (appAi) {
     },
     "message":{
       "text": "Cool.. :) \nHow many pages would you print every day?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Less than 10",
+          "payload":"PRINTER_PAPER_LESS_THAN_10"
+        },
+        {
+          "content_type":"text",
+          "title":"Less than 100",
+          "payload":"PRINTER_PAPER_LESS_THAN_100"
+        },
+        {
+          "content_type":"text",
+          "title":"More than 100",
+          "payload":"PRINTER_PAPER_MORE_THAN_100"
+        }]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function chooseUseTypeFallback (appAi) {
+  console.log("Inside chooseUseTypeFallback")
+  //appAi.tell('Cool. Would you print a lot every day? Like more than 50 pages per week?');
+  var messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Sorry, I didnt get that. \nHow many pages would you print every day?",
       "quick_replies":[
         {
           "content_type":"text",
