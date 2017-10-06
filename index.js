@@ -115,12 +115,12 @@ function productPrinter (appAi) {
       "quick_replies":[
         {
           "content_type":"text",
-          "title":"For Personal purpose",
+          "title":"For Personal use",
           "payload":"PRINTER_USE_TYPE_PERSONAL"
         },
         {
           "content_type":"text",
-          "title":"For Professional purpose",
+          "title":"For Professional use",
           "payload":"PRINTER_USE_TYPE_PROFESSIONAL"
         }]
     }
@@ -131,7 +131,33 @@ function productPrinter (appAi) {
 
 function chooseUseType (appAi) {
   console.log("Inside chooseUseType")
-  appAi.tell('Cool. Would you print a lot every day? Like more than 50 pages per week?');
+  //appAi.tell('Cool. Would you print a lot every day? Like more than 50 pages per week?');
+  var messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Cool.. :) \n Please let me know how many pages you plan on printing on a weekly basis",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Less than 10",
+          "payload":"PRINTER_PAPER_LESS_THAN_10"
+        },
+        {
+          "content_type":"text",
+          "title":"Less than 100",
+          "payload":"PRINTER_PAPER_LESS_THAN_100"
+        },
+        {
+          "content_type":"text",
+          "title":"More than 100",
+          "payload":"PRINTER_PAPER_MORE_THAN_100"
+        }]
+    }
+  };
+
+  callSendAPI(messageData);
 }
 
 function chooseModerateUse (appAi) {
