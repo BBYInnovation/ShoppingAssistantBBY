@@ -47,9 +47,8 @@ app.post('/helloHttp', function(request, response) {
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
   actionMap.set(PRINTER, productPrinter);
-  actionMap.set(PRINTER_FALLBACK, productPrinter);
   actionMap.set(USETYPE, chooseUseType);
-  actionMap.set(USETYPE_FALLBACK, chooseUseType);
+  actionMap.set(USETYPE_FALLBACK, chooseUseTypeFallback);
   actionMap.set(MODERATEUSE, chooseModerateUse);
   actionMap.set(MODERATEUSE_FALLBACK, chooseModerateUse);
   actionMap.set(SCANTYPE, chooseScanType);
@@ -177,6 +176,32 @@ function chooseModerateUse (appAi) {
     },
     "message":{
       "text": "Would you also want the printer to scan pages?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"YES",
+          "payload":"PRINTER_SCAN_YES"
+        },
+        {
+          "content_type":"text",
+          "title":"NO",
+          "payload":"PRINTER_SCAN_NO"
+        }]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
+function chooseModerateUseFallback (appAi) {
+  console.log("Inside chooseModerateUseFallback")
+  //appAi.tell('Would you also want the printer to scan pages?');
+  var messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Sorry, I didnt get that. \nWould you also want the printer to scan pages?",
       "quick_replies":[
         {
           "content_type":"text",
