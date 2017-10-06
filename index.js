@@ -19,6 +19,9 @@ const CHECKOUT = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.
 const END = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut.End';
 const NAME = 'action.name';
 const GETNAME = 'input.name';
+const PRINTER_FALLBACK = 'ProductPrinter.fallback';
+const USETYPE_FALLBACK = 'Printer.UseType.fallback';
+const MODERATEUSE_FALLBACK = 'Printer.UseType.ModerateUse.fallback';
 
 const PAGE_ACCESS_TOKEN = 'EAABrwqlWAPwBALcI3btkbhDnPAjM2aM5mRAwLhguPpZBNcfkTwjKMk5sYJoX7G73D4NVgdTqQLMVele1ZA9uwKpEFGlyTZC0sKG8AiWQgh0vvHvi097smF35tQ8nTZBV82zn6IShX3woZApBoBN0Eo5LCBjVNUAh2j4lK4ZCeUmQZDZD';
 var senderID = '';
@@ -47,8 +50,11 @@ app.post('/helloHttp', function(request, response) {
   const actionMap = new Map();
   actionMap.set(WELCOME_INTENT, welcomeIntent);
   actionMap.set(PRINTER, productPrinter);
+  actionMap.set(PRINTER_FALLBACK, productPrinter);
   actionMap.set(USETYPE, chooseUseType);
+  actionMap.set(USETYPE_FALLBACK, chooseUseType);
   actionMap.set(MODERATEUSE, chooseModerateUse);
+  actionMap.set(MODERATEUSE_FALLBACK, chooseModerateUse);
   actionMap.set(SCANTYPE, chooseScanType);
   actionMap.set(WIFITYPE, chooseWiFiType);
   actionMap.set(PRODUCT_SELECTED, productSelected);
