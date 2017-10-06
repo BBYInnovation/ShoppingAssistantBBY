@@ -17,8 +17,6 @@ const WIFITYPE = 'Printer.UseType.ModerateUse.ScanType.WifiType';
 const PRODUCT_SELECTED = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected';
 const CHECKOUT = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut';
 const END = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut.End';
-const NAME = 'action.name';
-const GETNAME = 'input.name';
 const PRINTER_FALLBACK = 'ProductPrinter.fallback';
 const USETYPE_FALLBACK = 'Printer.UseType.fallback';
 const MODERATEUSE_FALLBACK = 'Printer.UseType.ModerateUse.fallback';
@@ -60,8 +58,6 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(PRODUCT_SELECTED, productSelected);
   actionMap.set(CHECKOUT, checkOut);
   actionMap.set(END, endIntent);
-  actionMap.set(NAME, getName);
-  actionMap.set(GETNAME, selectedName);
 
   appAi.handleRequest(actionMap);
 });
