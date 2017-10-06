@@ -23,7 +23,7 @@ const PRINTER_FALLBACK = 'ProductPrinter.fallback';
 const USETYPE_FALLBACK = 'Printer.UseType.fallback';
 const MODERATEUSE_FALLBACK = 'Printer.UseType.ModerateUse.fallback';
 
-const PAGE_ACCESS_TOKEN = 'EAABrwqlWAPwBALcI3btkbhDnPAjM2aM5mRAwLhguPpZBNcfkTwjKMk5sYJoX7G73D4NVgdTqQLMVele1ZA9uwKpEFGlyTZC0sKG8AiWQgh0vvHvi097smF35tQ8nTZBV82zn6IShX3woZApBoBN0Eo5LCBjVNUAh2j4lK4ZCeUmQZDZD';
+const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
 var data = '';
 
@@ -72,6 +72,10 @@ app.get('/', function(request, response) {
   res.sendStatus(200);
 });
 
+app.get('/setupGetStartedButton',function(req,res){
+    setupGetStartedButton(res);
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
@@ -106,7 +110,7 @@ function selectedName(appAi) {
 
 function welcomeIntent (appAi) {
   console.log("Inside welcomeIntent");
-  appAi.tell('I am your BestBuy virtual In-Home Assistant. \nI can help you choose your home appliances. \nHow may I help you today?');
+  appAi.tell('I am your Best Buy In-Home Assistant. \nAsk me about Electronic Gadgets and Home appliances. \nHow may I help you today?');
 }
 
 function productPrinter (appAi) {
@@ -143,7 +147,7 @@ function chooseUseType (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Cool.. :) \nPlease let me know how many pages you plan on printing roughly on a weekly basis",
+      "text": "Cool.. :) \nHow many pages would you print every day?",
       "quick_replies":[
         {
           "content_type":"text",
@@ -227,7 +231,7 @@ function chooseWiFiType (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Check this printer model which matches your criteria! \nCan I add this to your Best Buy cart?",
+      "text": "I found the below for you. \nCan I add it to cart?",
       "quick_replies":[
         {
           "content_type":"text",
@@ -366,5 +370,34 @@ function sendGenericMessage(recipientId) {
       }
     });
   }
+
+  function setupGetStartedButton(res){
+          var messageData = {
+                  "get_started"://[
+                  {
+                      "payload":"Get Started with Home Electronic Assistance"
+                      }
+                  //]
+          };
+
+
+          // Start the request
+          request({
+              url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ PAGE_ACCESS_TOKEN,
+              method: 'POST',
+              headers: {'Content-Type': 'application/json'},
+              form: messageData
+          },
+          function (error, response, body) {
+              if (!error && response.statusCode == 200) {
+                  // Print out the response body
+                  res.send(body);
+
+              } else {
+                  // TODO: Handle errors
+                  res.send(body);
+              }
+          });
+      }
 
 module.exports = app;
