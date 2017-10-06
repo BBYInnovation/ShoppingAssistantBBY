@@ -100,7 +100,7 @@ function selectedName(appAi) {
 
 function welcomeIntent (appAi) {
   console.log("Inside welcomeIntent");
-  appAi.tell('I am your BestBuy virtual In-Home Assistant. I can help you choose your home appliances. How may I help you today?');
+  appAi.tell('I am your BestBuy virtual In-Home Assistant. \nI can help you choose your home appliances. \nHow may I help you today?');
 }
 
 function productPrinter (appAi) {
@@ -111,7 +111,7 @@ function productPrinter (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Sure. I can help you with that. \n How do you plan on using it?",
+      "text": "Sure. I can help you with that. \nHow do you plan on using it?",
       "quick_replies":[
         {
           "content_type":"text",
@@ -137,7 +137,7 @@ function chooseUseType (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Cool.. :) \n Please let me know how many pages you plan on printing roughly on a weekly basis",
+      "text": "Cool.. :) \nPlease let me know how many pages you plan on printing roughly on a weekly basis",
       "quick_replies":[
         {
           "content_type":"text",
@@ -221,7 +221,7 @@ function chooseWiFiType (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Check this printer model which matches your criteria! Can I add this to your Best Buy cart?",
+      "text": "Check this printer model which matches your criteria! \nCan I add this to your Best Buy cart?",
       "quick_replies":[
         {
           "content_type":"text",
@@ -240,6 +240,7 @@ function chooseWiFiType (appAi) {
         }]
     }
   };
+  callSendAPI(messageData);
 }
 
 function productSelected (appAi) {
