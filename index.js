@@ -174,23 +174,19 @@ function sendGenericMessage(recipientId) {
       recipient: {
         id: recipientId
       },
-      message: {
-        attachment: {
-          type: "template",
-          payload: {
-            template_type: "button",
-            text: "This is test text",
-            buttons:[{
-              type: "web_url",
-              url: "https://bbyshoppingassistant.herokuapp.com/name",
-              title: "Joe"
-            }, {
-              type: "web_url",
-              url: "https://bbyshoppingassistant.herokuapp.com/name",
-              title: "Arun"
-            }]
-          }
-        }
+      "message":{
+        "text": "Here's a quick reply!",
+        "quick_replies":[
+          {
+            "content_type":"text",
+            "title":"Joe",
+            "payload":"NAME_JOE"
+          },
+          {
+            "content_type":"text",
+            "title":"Arun",
+            "payload":"NAME_ARUN"
+          }]
       }
     };
 
