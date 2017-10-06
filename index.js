@@ -72,6 +72,7 @@ app.listen(app.get('port'), function() {
 
 function getName (app) {
   console.log("Inside getName");
+  app.setContext('Select_Name');
   sendButtonMessage(senderID);
   /*app.ask(app.buildRichResponse()
     .addSimpleResponse({speech: 'Howdy! I can tell you fun facts about ' +
