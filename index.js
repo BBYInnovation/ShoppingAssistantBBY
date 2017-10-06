@@ -69,7 +69,8 @@ app.listen(app.get('port'), function() {
 
 function getName (app) {
   console.log("Inside getName");
-  app.ask(app.buildRichResponse()
+  sendButtonMessage(senderID);
+  /*app.ask(app.buildRichResponse()
     .addSimpleResponse({speech: 'Howdy! I can tell you fun facts about ' +
         'almost any number like 0, 42, or 100. What number do you have ' +
         'in mind?',
@@ -78,7 +79,7 @@ function getName (app) {
     .addSuggestions(
       ['0', '42', '100', 'Never mind'])
     .addSuggestionLink('Suggestion Link', 'https://assistant.google.com/')
-  );
+  );*/
 }
 
 
@@ -166,6 +167,34 @@ function sendGenericMessage(recipientId) {
     }
   };
   callSendAPI(messageData);
+  }
+
+  function sendButtonMessage(recipientId) {
+    var messageData = {
+      recipient: {
+        id: recipientId
+      },
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "button",
+            text: "This is test text",
+            buttons:[{
+              type: "web_url",
+              url: "https://bbyshoppingassistant.herokuapp.com/name",
+              title: "Joe"
+            }, {
+              type: "web_url",
+              url: "https://bbyshoppingassistant.herokuapp.com/name",
+              title: "Arun"
+            }]
+          }
+        }
+      }
+    };
+
+    callSendAPI(messageData);
   }
 
   function callSendAPI(messageData) {
