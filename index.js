@@ -52,7 +52,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(USETYPE, chooseUseType);
   actionMap.set(USETYPE_FALLBACK, chooseUseTypeFallback);
   actionMap.set(MODERATEUSE, chooseModerateUse);
-  actionMap.set(MODERATEUSE_FALLBACK, chooseModerateUse);
+  actionMap.set(MODERATEUSE_FALLBACK, chooseModerateUseFallback);
   actionMap.set(SCANTYPE, chooseScanType);
   actionMap.set(WIFITYPE, chooseWiFiType);
   actionMap.set(PRODUCT_SELECTED, productSelected);
@@ -276,8 +276,8 @@ function chooseScanType (appAi) {
 function chooseWiFiType (appAi) {
   console.log("Inside chooseWiFiType")
   //appAi.tell('Check this printer model which matches your criteria! Can I add this to your Best Buy cart?');
-  sendGenericMessage(senderID);
-  setTimeout(sendButtonMessage, 3000);
+  sendPrinterDetails(senderID);
+  setTimeout(sendPrinterSelectButton, 3000);
 }
 
 function productSelected (appAi) {
@@ -316,11 +316,7 @@ function endIntent (appAi) {
   appAi.tell('Thanks for shopping with Best Buy.:) \nHave a great day! ');
 }
 
-
-
-
-
-function sendGenericMessage(recipientId) {
+function sendPrinterDetails(recipientId) {
   console.log("RecipientID: ", recipientId)
   var messageData = {
     recipient: {
@@ -349,7 +345,7 @@ function sendGenericMessage(recipientId) {
   callSendAPI(messageData);
   }
 
-  function sendButtonMessage(recipientId) {
+  function sendPrinterSelectButton(recipientId) {
     messageData = {
       recipient: {
         id: senderID
@@ -410,8 +406,7 @@ function sendGenericMessage(recipientId) {
                       }
                   //]
           };
-
-
+          
           // Start the request
           request({
               url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ PAGE_ACCESS_TOKEN,
