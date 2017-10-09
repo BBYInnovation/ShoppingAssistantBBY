@@ -50,7 +50,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(PRINTER, productPrinter);
   actionMap.set(PRINTER_FALLBACK, productPrinterFallback);
   actionMap.set(USETYPE, chooseUseType);
-  actionMap.set(PRINTER_FALLBACK, chooseUseTypeFallback);
+  actionMap.set(USETYPE_FALLBACK, chooseUseTypeFallback);
   actionMap.set(MODERATEUSE, chooseModerateUse);
   actionMap.set(MODERATEUSE_FALLBACK, chooseModerateUse);
   actionMap.set(SCANTYPE, chooseScanType);
