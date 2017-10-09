@@ -39,7 +39,7 @@ app.post('/helloHttp', function(request, response) {
   //console.log("Req: ", req);
 
   data = req.originalRequest.data;
-  //console.log("data: ", data);
+  console.log("data: ", data);
   var result = req.originalRequest.result;
   console.log("result", result);
   for(var i=0; i<result.context.length; i++) {
