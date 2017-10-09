@@ -42,8 +42,8 @@ app.post('/helloHttp', function(request, response) {
   //console.log("data: ", data);
   var result = req.result;
   console.log("result", result);
-  for(var i=0; i<result.context.length; i++) {
-    console.log("Context: ", result.context[i]);
+  for(var i=0; i<result.contexts.length; i++) {
+    console.log("Context: ", result.contexts[i]);
   }
   senderID = data.sender.id;
   console.log("SenderID: ", senderID);
