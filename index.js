@@ -36,11 +36,14 @@ app.use(express.static('public'));
 app.post('/helloHttp', function(request, response) {
   console.log("Inside /helloHttp");
   var req = request.body;
-  console.log("Req: ", req);
+  //console.log("Req: ", req);
 
   data = req.originalRequest.data;
-  console.log("data: ", data);
-
+  //console.log("data: ", data);
+  var result = req.originalRequest.result;
+  for(var i=0; i<result.context.length; i++) {
+    console.log("Context: ", result.context[i]);
+  }
   senderID = data.sender.id;
   console.log("SenderID: ", senderID);
 
@@ -406,7 +409,7 @@ function sendPrinterDetails(recipientId) {
                       }
                   //]
           };
-          
+
           // Start the request
           request({
               url: 'https://graph.facebook.com/v2.6/me/messenger_profile?access_token='+ PAGE_ACCESS_TOKEN,
