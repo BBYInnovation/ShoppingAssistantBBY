@@ -500,8 +500,8 @@ function sendPrinterDetails(recipientId) {
       if (!error && response.statusCode === 200 && body != undefined && body.results.length > 0) {
           //console.log(body) // Print the json response
           for(var i=0; i<body.results.length; i++) {
+            console.log("Open Now: ", body.results[i].opening_hours.open_now);
             console.log("Store Address: ", body.results[i].vicinity);
-            a = a + "\n" + body.results[i].vicinity;
             var messageData = {
               recipient: {
                 id: senderID
@@ -520,12 +520,10 @@ function sendPrinterDetails(recipientId) {
               }
             };
             callSendAPI(messageData);
-            /*if( i == 2) {
+            if( i == 2) {
               break;
-            }*/
-            //console.log("Open Now: ", body.results[i].opening_hours.open_now);
+            }
           }
-          //appAi.tell(a);
       } else {
         appAi.tell("Sorry, no stores near by.");
       }
