@@ -490,7 +490,7 @@ function sendPrinterDetails(recipientId) {
     console.log('Provided Lat and long are: ',lat, long);
     let a = 'Provided Lat and long are: ' + lat + ', ' + long;
     appAi.tell(a);
-
+    var locationResponse = '';
     var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
               + "location=" + lat + "," + long
               + "&radius=10000&type=Retail&keyword=Best%20Buy"
@@ -499,10 +499,15 @@ function sendPrinterDetails(recipientId) {
       url: url,
       json: true
     }, function (error, response, body) {
-      if (!error && response.statusCode === 200) {
+      if (!error && response.statusCode === 200 & body != undefined) {
           console.log(body) // Print the json response
+          locationResponse = body;
       }
-    })
+    });
+    for(var i=0; i<locationResponse.results.length; i++) {
+      console.log("Store Address: ", locationResponse.results[i].vicinity);
+      console.log("Open Now: ", locationResponse.results[i].opening_hours.open_now);
+    }
   }
 
   function callSendAPI(messageData) {
