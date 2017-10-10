@@ -502,6 +502,23 @@ function sendPrinterDetails(recipientId) {
           for(var i=0; i<body.results.length; i++) {
             console.log("Store Address: ", body.results[i].vicinity);
             a = a + "\n" + body.results[i].vicinity;
+            var messageData = {
+              recipient: {
+                id: recipientId
+              },
+              message: {
+                attachment: {
+                  type: "template",
+                  payload: {
+                    template_type: "generic",
+                    elements: [{
+                      title: body.results[i].vicinity
+                    }]
+                  }
+                }
+              }
+            };
+            callSendAPI(messageData);
             /*if( i == 2) {
               break;
             }*/
