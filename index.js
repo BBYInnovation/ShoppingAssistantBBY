@@ -504,7 +504,7 @@ function sendPrinterDetails(recipientId) {
             a = a + "\n" + body.results[i].vicinity;
             var messageData = {
               recipient: {
-                id: recipientId
+                id: senderID
               },
               message: {
                 attachment: {
