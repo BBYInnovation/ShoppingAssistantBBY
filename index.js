@@ -487,7 +487,9 @@ function sendPrinterDetails(recipientId) {
     console.log("Inside retrieveLocation");
     var lat = data.postback.data.lat;
     var long = data.postback.data.long;
-    appAi.tell('Provided Lat and long are: ', lat, long);
+    console.log('Provided Lat and long are: ',lat, long);
+    let a = 'Provided Lat and long are: ' + lat + ', ' + long;
+    appAi.tell(a);
 
   }
 
