@@ -24,6 +24,7 @@ const ADD_TO_CART_FALLBACK = 'BuyPrinter.PrinterAddtoCart.fallback';
 const CHECKOUT = 'BuyPrinter.PrinterCheckOut';
 const CHECKOUT_FALLBACK = 'BuyPrinter.PrinterCheckOut.fallback';
 const END_CHAT = 'BuyPrinter.PrinterEndChat';
+const GET_LOCATION = 'GetLocation';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
@@ -70,6 +71,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(CHECKOUT, checkOut);
   actionMap.set(CHECKOUT_FALLBACK, checkOutFallback);
   actionMap.set(END_CHAT, endIntent);
+  actionMap.set(GET_LOCATION, getLocation);
 
   appAi.handleRequest(actionMap);
 });
@@ -415,7 +417,7 @@ function sendPrinterDetails(recipientId) {
         payload: {
           template_type: "generic",
           elements: [{
-            title: "rift",
+            title: "HP pro 6978 printer",
             subtitle: "Printer",
             item_url: "https://www.bestbuy.com/site/hp-officejet-pro-6978-wireless-all-in-one-instant-ink-ready-printer/5119600.p?skuId=5119600",
             image_url: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5119/5119600_sd.jpg;maxHeight=550;maxWidth=642",
@@ -459,6 +461,34 @@ function sendPrinterDetails(recipientId) {
     };
     callSendAPI(messageData);
   }
+
+  function getLocation(recipientId) {
+    messageData = {
+      recipient: {
+        id: senderID
+      },
+  "message":{
+      "text": "Sure, I can help you that. \nPlease share your location to show the nearest Best Buy stores",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"Search",
+          "payload":"<POSTBACK_PAYLOAD>",
+          "image_url":"http://example.com/img/red.png"
+        },
+        {
+          "content_type":"location"
+        },
+        {
+          "content_type":"text",
+          "title":"Something Else",
+          "payload":"LOCATION_DETAILS"
+        }
+      ]
+    }
+  };
+  callSendAPI(messageData);
+}
 
   function callSendAPI(messageData) {
     request({
