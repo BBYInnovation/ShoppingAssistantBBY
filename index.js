@@ -464,7 +464,7 @@ function sendPrinterDetails(recipientId) {
     callSendAPI(messageData);
   }
 
-  function getLocation(recipientId) {
+  function getLocation(appAi) {
     console.log("Inside getLocation");
     messageData = {
       recipient: {
@@ -483,7 +483,7 @@ function sendPrinterDetails(recipientId) {
       callSendAPI(messageData);
     }
 
-  function retrieveLocation(recipientId) {
+  function retrieveLocation(appAi) {
     console.log("Inside retrieveLocation");
     var lat = data.postback.data.lat;
     var long = data.postback.data.long;
