@@ -512,7 +512,8 @@ function sendPrinterDetails(recipientId) {
                   payload: {
                     template_type: "generic",
                     elements: [{
-                      title: body.results[i].vicinity
+                      title: body.results[i].vicinity,
+                      subtitle: "Open Now"
                     }]
                   }
                 }
@@ -524,7 +525,7 @@ function sendPrinterDetails(recipientId) {
             }*/
             //console.log("Open Now: ", body.results[i].opening_hours.open_now);
           }
-          appAi.tell(a);
+          //appAi.tell(a);
       } else {
         appAi.tell("Sorry, no stores near by.");
       }
