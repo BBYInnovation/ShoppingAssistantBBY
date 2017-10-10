@@ -491,6 +491,18 @@ function sendPrinterDetails(recipientId) {
     let a = 'Provided Lat and long are: ' + lat + ', ' + long;
     appAi.tell(a);
 
+    var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
+              + "location=" + lat + "," + long
+              + "&radius=10000&type=Retail&keyword=Best%20Buy"
+              + "&key=AIzaSyDHyBBKhH-CKIvxiwPIfEMA9wUvVShq5F0";
+    request({
+      url: url,
+      json: true
+    }, function (error, response, body) {
+      if (!error && response.statusCode === 200) {
+          console.log(body) // Print the json response
+      }
+    })
   }
 
   function callSendAPI(messageData) {
