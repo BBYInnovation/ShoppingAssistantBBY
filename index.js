@@ -501,6 +501,10 @@ function sendPrinterDetails(recipientId) {
           //console.log(body) // Print the json response
           for(var i=0; i<body.results.length; i++) {
             console.log("Open Now: ", body.results[i].opening_hours.open_now);
+            var storeOpenStatus = 'Closed Now';
+            if(body.results[i].opening_hours.open_now) {
+                storeOpenStatus = 'Open Now';
+            }
             console.log("Store Address: ", body.results[i].vicinity);
             var messageData = {
               recipient: {
@@ -513,7 +517,7 @@ function sendPrinterDetails(recipientId) {
                     template_type: "generic",
                     elements: [{
                       title: body.results[i].vicinity,
-                      subtitle: "Open Now"
+                      subtitle: storeOpenStatus
                     }]
                   }
                 }
