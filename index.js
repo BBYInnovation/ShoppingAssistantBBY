@@ -501,7 +501,7 @@ function sendPrinterDetails(recipientId) {
           //console.log(body) // Print the json response
           for(var i=0; i<body.results.length; i++) {
             console.log("Store Address: ", body.results[i].vicinity);
-            api.tell(body.results[i].vicinity);
+            appAi.tell(body.results[i].vicinity);
             //console.log("Open Now: ", body.results[i].opening_hours.open_now);
           }
       }
