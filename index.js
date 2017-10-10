@@ -533,6 +533,10 @@ function sendPrinterDetails(recipientId) {
         appAi.tell("Sorry, no stores near by.");
       }
     });
+    setTimeout(delayEndCall, 3000);
+  }
+
+  function delayEndCall(appAi) {
     appAi.tell("Is there anything else I can help you with?");
   }
 
