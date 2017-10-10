@@ -505,7 +505,7 @@ function sendPrinterDetails(recipientId) {
                 storeOpenStatus = 'Open Now';
             }
             console.log("Store Address: ", body.results[i].vicinity);
-            var storeTitle = body.results[i].name + ' \n Address: ' + body.results[i].vicinity;
+            var storeTitle = body.results[i].name + ' \n :- ' + body.results[i].vicinity;
             var messageData = {
               recipient: {
                 id: senderID
@@ -524,16 +524,16 @@ function sendPrinterDetails(recipientId) {
               }
             };
             callSendAPI(messageData);
-            if( i == 2) {
+            if( i == 5) {
               break;
             }
           }
-          appAi.tell("Above are BestBuy stores close to you location: ");
+          //
       } else {
         appAi.tell("Sorry, no stores near by.");
       }
     });
-
+    appAi.tell("Is there anything else I can help you with?");
   }
 
   function callSendAPI(messageData) {
