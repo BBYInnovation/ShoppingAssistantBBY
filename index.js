@@ -507,12 +507,12 @@ function sendPrinterDetails(recipientId) {
             }*/
             //console.log("Open Now: ", body.results[i].opening_hours.open_now);
           }
-
+          appAi.tell(a);
       } else {
-        a = "Sorry, no stores near by.";
+        appAi.tell("Sorry, no stores near by.");
       }
     });
-    appAI.tell(a);
+
   }
 
   function callSendAPI(messageData) {
