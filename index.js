@@ -488,6 +488,7 @@ function sendPrinterDetails(recipientId) {
     var lat = data.postback.data.lat;
     var long = data.postback.data.long;
     console.log('Provided Lat and long are: ',lat, long);
+    var a = "Below are BestBuy stores close to you location: ";
     var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
               + "location=" + lat + "," + long
               + "&radius=10000&type=Retail&keyword=Best%20Buy"
@@ -498,7 +499,6 @@ function sendPrinterDetails(recipientId) {
     }, function (error, response, body) {
       if (!error && response.statusCode === 200 && body != undefined && body.results.length > 0) {
           //console.log(body) // Print the json response
-          var a = "Below are BestBuy stores close to you location: ";
           for(var i=0; i<body.results.length; i++) {
             console.log("Store Address: ", body.results[i].vicinity);
             a = a + "\n" + body.results[i].vicinity;
@@ -507,12 +507,12 @@ function sendPrinterDetails(recipientId) {
             }*/
             //console.log("Open Now: ", body.results[i].opening_hours.open_now);
           }
-          appAI.tell(a);
+
       } else {
-        appAi.tell("Sorry, no stores near by.");
+        a = "Sorry, no stores near by.";
       }
     });
-
+    appAI.tell(a);
   }
 
   function callSendAPI(messageData) {
