@@ -505,6 +505,7 @@ function sendPrinterDetails(recipientId) {
                 storeOpenStatus = 'Open Now';
             }
             console.log("Store Address: ", body.results[i].vicinity);
+            var storeTitle = body.results[i].name + ' \n Address: ' + body.results[i].vicinity;
             var messageData = {
               recipient: {
                 id: senderID
@@ -515,7 +516,7 @@ function sendPrinterDetails(recipientId) {
                   payload: {
                     template_type: "generic",
                     elements: [{
-                      title: body.results[i].vicinity,
+                      title: storeTitle,
                       subtitle: storeOpenStatus
                     }]
                   }
