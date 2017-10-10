@@ -11,15 +11,19 @@ var app = express();
 const WELCOME_INTENT = 'input.welcome';
 const PRINTER = 'ProductPrinter';
 const PRINTER_FALLBACK = 'ProductPrinter.fallback';
-const USETYPE = 'Printer.UseType';
-const USETYPE_FALLBACK = 'Printer.UseType.fallback';
-const MODERATEUSE = 'Printer.UseType.ModerateUse';
-const MODERATEUSE_FALLBACK = 'Printer.UseType.ModerateUse.fallback';
-const SCANTYPE = 'Printer.UseType.ModerateUse.ScanType';
-const WIFITYPE = 'Printer.UseType.ModerateUse.ScanType.WifiType';
-const PRODUCT_SELECTED = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected';
-const CHECKOUT = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut';
-const END = 'Printer.UseType.ModerateUse.ScanType.WifiType.ProductSelected.CheckOut.End';
+const USETYPE = 'BuyPrinter.PrinterUseTypeSelection';
+const USETYPE_FALLBACK = 'BuyPrinter.PrinterUseTypeSelection.fallback';
+const LOADTYPE = 'BuyPrinter.PrinterLoadTypeSelection';
+const LOADTYPE_FALLBACK = 'BuyPrinter.PrinterLoadTypeSelection.fallback';
+const SCANTYPE = 'BuyPrinter.PrinterScanTypeSelection';
+const SCANTYPE_FALLBACK = 'BuyPrinter.PrinterScanTypeSelection.fallback';
+const WIFITYPE = 'BuyPrinter.PrinterWiFiTypeSelection';
+const WIFITYPE_FALLBACK = 'BuyPrinter.PrinterWiFiTypeSelection.fallback';
+const ADD_TO_CART = 'BuyPrinter.PrinterAddtoCart';
+const ADD_TO_CART_FALLBACK = 'BuyPrinter.PrinterAddtoCart.fallback';
+const CHECKOUT = 'BuyPrinter.PrinterCheckOut';
+const CHECKOUT_FALLBACK = 'BuyPrinter.PrinterCheckOut.fallback';
+const END_CHAT = 'BuyPrinter.PrinterEndChat';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
@@ -55,13 +59,17 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(PRINTER_FALLBACK, productPrinterFallback);
   actionMap.set(USETYPE, chooseUseType);
   actionMap.set(USETYPE_FALLBACK, chooseUseTypeFallback);
-  actionMap.set(MODERATEUSE, chooseModerateUse);
-  actionMap.set(MODERATEUSE_FALLBACK, chooseModerateUseFallback);
+  actionMap.set(LOADTYPE, chooseModerateUse);
+  actionMap.set(LOADTYPE_FALLBACK, chooseModerateUseFallback);
   actionMap.set(SCANTYPE, chooseScanType);
+  actionMap.set(SCANTYPE_FALLBACK, chooseScanTypeFallback);
   actionMap.set(WIFITYPE, chooseWiFiType);
-  actionMap.set(PRODUCT_SELECTED, productSelected);
+  actionMap.set(WIFITYPE_FALLBACK, chooseWiFiTypeFallback);
+  actionMap.set(ADD_TO_CART, productSelected);
+  actionMap.set(ADD_TO_CART_FALLBACK, productSelectedFallback);
   actionMap.set(CHECKOUT, checkOut);
-  actionMap.set(END, endIntent);
+  actionMap.set(CHECKOUT_FALLBACK, checkOutFallback);
+  actionMap.set(END_CHAT, endIntent);
 
   appAi.handleRequest(actionMap);
 });
@@ -87,7 +95,6 @@ function welcomeIntent (appAi) {
 
 function productPrinter (appAi) {
   console.log("Inside productPrinter");
-  //appAi.tell('Sure. I can help you with that. Do you want it for Home Use or Office Use?');
   var messageData = {
     recipient: {
       id: senderID
@@ -113,7 +120,6 @@ function productPrinter (appAi) {
 
 function productPrinterFallback (appAi) {
   console.log("Inside productPrinterFallback");
-  //appAi.tell('Sure. I can help you with that. Do you want it for Home Use or Office Use?');
   var messageData = {
     recipient: {
       id: senderID
@@ -138,8 +144,7 @@ function productPrinterFallback (appAi) {
 }
 
 function chooseUseType (appAi) {
-  console.log("Inside chooseUseType")
-  //appAi.tell('Cool. Would you print a lot every day? Like more than 50 pages per week?');
+  console.log("Inside chooseUseType");
   var messageData = {
     recipient: {
       id: senderID
@@ -169,8 +174,7 @@ function chooseUseType (appAi) {
 }
 
 function chooseUseTypeFallback (appAi) {
-  console.log("Inside chooseUseTypeFallback")
-  //appAi.tell('Cool. Would you print a lot every day? Like more than 50 pages per week?');
+  console.log("Inside chooseUseTypeFallback");
   var messageData = {
     recipient: {
       id: senderID
@@ -200,8 +204,7 @@ function chooseUseTypeFallback (appAi) {
 }
 
 function chooseModerateUse (appAi) {
-  console.log("Inside chooseModerateUse")
-  //appAi.tell('Would you also want the printer to scan pages?');
+  console.log("Inside chooseModerateUse");
   var messageData = {
     recipient: {
       id: senderID
@@ -226,8 +229,7 @@ function chooseModerateUse (appAi) {
 }
 
 function chooseModerateUseFallback (appAi) {
-  console.log("Inside chooseModerateUseFallback")
-  //appAi.tell('Would you also want the printer to scan pages?');
+  console.log("Inside chooseModerateUseFallback");
   var messageData = {
     recipient: {
       id: senderID
@@ -252,8 +254,7 @@ function chooseModerateUseFallback (appAi) {
 }
 
 function chooseScanType (appAi) {
-  console.log("Inside chooseScanType")
-  //appAi.tell('Do you need the printer to print over the WiFi?');
+  console.log("Inside chooseScanType");
   var messageData = {
     recipient: {
       id: senderID
@@ -277,16 +278,68 @@ function chooseScanType (appAi) {
   callSendAPI(messageData);
 }
 
+function chooseScanTypeFallback (appAi) {
+  console.log("Inside chooseScanTypeFallback");
+  var messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Sorry, I didnt get that. \nDo you need the printer to print over the WiFi?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"YES",
+          "payload":"PRINTER_WIFI_YES"
+        },
+        {
+          "content_type":"text",
+          "title":"NO",
+          "payload":"PRINTER_WIFI_NO"
+        }]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
 function chooseWiFiType (appAi) {
-  console.log("Inside chooseWiFiType")
-  //appAi.tell('Check this printer model which matches your criteria! Can I add this to your Best Buy cart?');
+  console.log("Inside chooseWiFiType");
   sendPrinterDetails(senderID);
   setTimeout(sendPrinterSelectButton, 3000);
 }
 
+function chooseWiFiTypeFallback (appAi) {
+  console.log("Inside chooseWiFiTypeFallback");
+  messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Sorry, I didnt get that. \nCan I add it to your cart?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"YES",
+          "payload":"PRINTER_SELECT_YES"
+        },
+        {
+          "content_type":"text",
+          "title":"NO",
+          "payload":"PRINTER_SELECT_NO"
+        },
+        {
+          "content_type":"text",
+          "title":"Show More",
+          "payload":"PRINTER_SELECT_SHOW_MORE"
+        }]
+    }
+  };
+  callSendAPI(messageData);
+}
+
 function productSelected (appAi) {
-  console.log("Inside productSelected")
-  //appAi.tell('Great! Product added to your BestBuy cart. Can I checkout this item for you?');
+  console.log("Inside productSelected");
   var messageData = {
     recipient: {
       id: senderID
@@ -310,9 +363,39 @@ function productSelected (appAi) {
   callSendAPI(messageData);
 }
 
+function productSelectedFallback (appAi) {
+  console.log("Inside productSelected");
+  var messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Sorry, I didnt get that. \nCan I checkout this item for you?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"YES",
+          "payload":"PRINTER_CHECKOUT_YES"
+        },
+        {
+          "content_type":"text",
+          "title":"NO",
+          "payload":"PRINTER_CHECKOUT_NO"
+        }]
+    }
+  };
+
+  callSendAPI(messageData);
+}
+
 function checkOut (appAi) {
   console.log("Inside checkOut")
   appAi.tell('Item checked out. \nIs there anything else I can help you with?');
+}
+
+function checkOutFallback (appAi) {
+  console.log("Inside checkOut")
+  appAi.tell('Sorry, I didnt get that. \nIs there anything else I can help you with?');
 }
 
 function endIntent (appAi) {
