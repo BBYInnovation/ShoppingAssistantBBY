@@ -488,7 +488,6 @@ function sendPrinterDetails(recipientId) {
     var lat = data.postback.data.lat;
     var long = data.postback.data.long;
     console.log('Provided Lat and long are: ',lat, long);
-    var a = "Below are BestBuy stores close to you location: ";
     var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
               + "location=" + lat + "," + long
               + "&radius=10000&type=Retail&keyword=Best%20Buy"
@@ -528,6 +527,7 @@ function sendPrinterDetails(recipientId) {
               break;
             }
           }
+          appAi.tell("Above are BestBuy stores close to you location: ");
       } else {
         appAi.tell("Sorry, no stores near by.");
       }
