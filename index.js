@@ -498,12 +498,18 @@ function sendPrinterDetails(recipientId) {
     }, function (error, response, body) {
       if (!error && response.statusCode === 200 && body != undefined && body.results.length > 0) {
           //console.log(body) // Print the json response
-          appAi.tell("Below are BestBuy stores close to you location");
+          var a = "Below are BestBuy stores close to you location: ";
           for(var i=0; i<body.results.length; i++) {
             console.log("Store Address: ", body.results[i].vicinity);
-            appAi.tell(body.results[i].vicinity);
+            a = a + "\n" + body.results[i].vicinity;
+            /*if( i == 2) {
+              break;
+            }*/
             //console.log("Open Now: ", body.results[i].opening_hours.open_now);
           }
+          appAI.tell(a);
+      } else {
+        appAi.tell("Sorry, no stores near by.");
       }
     });
 
