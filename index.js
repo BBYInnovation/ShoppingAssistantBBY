@@ -25,6 +25,7 @@ const CHECKOUT = 'BuyPrinter.PrinterCheckOut';
 const CHECKOUT_FALLBACK = 'BuyPrinter.PrinterCheckOut.fallback';
 const END_CHAT = 'BuyPrinter.PrinterEndChat';
 const GET_LOCATION = 'GetLocation';
+const RETRIEVE_LOCATION = 'RetrieveLocation';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
@@ -72,6 +73,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(CHECKOUT_FALLBACK, checkOutFallback);
   actionMap.set(END_CHAT, endIntent);
   actionMap.set(GET_LOCATION, getLocation);
+  actionMap.set(RETRIEVE_LOCATION, retrieveLocation);
 
   appAi.handleRequest(actionMap);
 });
@@ -391,22 +393,22 @@ function productSelectedFallback (appAi) {
 }
 
 function checkOut (appAi) {
-  console.log("Inside checkOut")
+  console.log("Inside checkOut");
   appAi.tell('Item checked out. \nIs there anything else I can help you with?');
 }
 
 function checkOutFallback (appAi) {
-  console.log("Inside checkOut")
+  console.log("Inside checkOut");
   appAi.tell('Sorry, I didnt get that. \nIs there anything else I can help you with?');
 }
 
 function endIntent (appAi) {
-  console.log("Inside endIntent")
+  console.log("Inside endIntent");
   appAi.tell('Thanks for shopping with Best Buy.:) \nHave a great day! ');
 }
 
 function sendPrinterDetails(recipientId) {
-  console.log("RecipientID: ", recipientId)
+  console.log("RecipientID: ", recipientId);
   var messageData = {
     recipient: {
       id: recipientId
@@ -463,32 +465,27 @@ function sendPrinterDetails(recipientId) {
   }
 
   function getLocation(recipientId) {
+    console.log("Inside getLocation");
     messageData = {
       recipient: {
         id: senderID
       },
-  "message":{
-      "text": "Sure, I can help you that. \nPlease share your location to show the nearest Best Buy stores",
-      "quick_replies":[
-        {
-          "content_type":"text",
-          "title":"Search",
-          "payload":"<POSTBACK_PAYLOAD>",
-          "image_url":"http://example.com/img/red.png"
-        },
-        {
-          "content_type":"location"
-        },
-        {
-          "content_type":"text",
-          "title":"Something Else",
-          "payload":"LOCATION_DETAILS"
+      "message":{
+          "text": "Sure, I can help you that. \nPlease share your location to show the nearest Best Buy stores",
+          "quick_replies":[
+            {
+              "content_type":"location",
+              "payload":"GET_USER_LOCATION"
+            }
+          ]
         }
-      ]
+      };
+      callSendAPI(messageData);
     }
-  };
-  callSendAPI(messageData);
-}
+    
+  function retrieveLocation(recipientId) {
+    console.log("Inside retrieveLocation")
+  }
 
   function callSendAPI(messageData) {
     request({
