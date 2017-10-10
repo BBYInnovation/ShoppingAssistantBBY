@@ -533,12 +533,7 @@ function sendPrinterDetails(recipientId) {
         appAi.tell("Sorry, no stores near by.");
       }
     });
-    setTimeout(delayEndCall, 3000);
-    appAi.tell("Is there anything else I can help you with?");
-  }
-
-  function delayEndCall(appAi) {
-    console.log('Print delay');
+    setTimeout(appAi.tell("Is there anything else I can help you with?"), 3000);
   }
 
   function callSendAPI(messageData) {
