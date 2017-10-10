@@ -48,9 +48,9 @@ app.post('/helloHttp', function(request, response) {
   console.log("\ndata: \n", data);
   var result = req.result;
   //console.log("result", result);
-  /*for(var i=0; i<result.contexts.length; i++) {
+  for(var i=0; i<result.contexts.length; i++) {
     console.log("Context: ", result.contexts[i]);
-  }*/
+  }
   senderID = data.sender.id;
   console.log("SenderID: ", senderID);
 
@@ -471,7 +471,7 @@ function sendPrinterDetails(recipientId) {
         id: senderID
       },
       "message":{
-          "text": "Sure, I can help you that. \nPlease share your location to show the nearest Best Buy stores",
+          "text": "Sure, I can help you with that. \nPlease share your location to show the nearest Best Buy stores",
           "quick_replies":[
             {
               "content_type":"location",
