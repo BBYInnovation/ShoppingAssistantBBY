@@ -42,15 +42,15 @@ app.use(express.static('public'));
 app.post('/helloHttp', function(request, response) {
   console.log("Inside /helloHttp");
   var req = request.body;
-  console.log("Req: ", req);
+  console.log("\nReq: \n", req);
 
   data = req.originalRequest.data;
-  //console.log("data: ", data);
+  console.log("\ndata: \n", data);
   var result = req.result;
-  console.log("result", result);
-  for(var i=0; i<result.contexts.length; i++) {
+  //console.log("result", result);
+  /*for(var i=0; i<result.contexts.length; i++) {
     console.log("Context: ", result.contexts[i]);
-  }
+  }*/
   senderID = data.sender.id;
   console.log("SenderID: ", senderID);
 
@@ -482,7 +482,7 @@ function sendPrinterDetails(recipientId) {
       };
       callSendAPI(messageData);
     }
-    
+
   function retrieveLocation(recipientId) {
     console.log("Inside retrieveLocation")
   }
