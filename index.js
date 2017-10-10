@@ -534,10 +534,11 @@ function sendPrinterDetails(recipientId) {
       }
     });
     setTimeout(delayEndCall, 3000);
+    appAi.tell("Is there anything else I can help you with?");
   }
 
   function delayEndCall(appAi) {
-    appAi.tell("Is there anything else I can help you with?");
+    console.log('Print delay');
   }
 
   function callSendAPI(messageData) {
