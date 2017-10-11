@@ -89,7 +89,7 @@ app.get('/setupGetStartedButton',function(req,res){
 });
 
 app.get('/getStoreDetails',function(req,res) {
-  var bby = require('bestbuy')('YourAPIKey');
+  var bby = require('bestbuy')('2u4r6g4hxahgcfpv54tr62bc');
   bby.stores('postalCode=55423', {show: 'storeId,storeType,name,city,region'}).then(function(data){
     console.log(data);
   });
