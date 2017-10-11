@@ -26,6 +26,7 @@ const CHECKOUT_FALLBACK = 'BuyPrinter.PrinterCheckOut.fallback';
 const END_CHAT = 'BuyPrinter.PrinterEndChat';
 const GET_LOCATION = 'GetLocation';
 const RETRIEVE_LOCATION = 'RetrieveLocation';
+const GET_TOP_FIVE_ITEMS = 'GetTopFiveItems';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
@@ -74,6 +75,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(END_CHAT, endIntent);
   actionMap.set(GET_LOCATION, getLocation);
   actionMap.set(RETRIEVE_LOCATION, retrieveLocation);
+  actionMap.set(GET_TOP_FIVE_ITEMS, getTopFiveItems);
 
   appAi.handleRequest(actionMap);
 });
@@ -534,6 +536,82 @@ function sendPrinterDetails(recipientId) {
       }
     });
   }
+
+  function getTopFiveItems(appAi) {
+    console.log("Inside getTopFiveItems");
+    messageData = {
+      recipient: {
+        id: senderID
+      },
+      "message": {
+          "attachment": {
+            "type": "template",
+            "payload": {
+              "template_type": "list",
+              "top_element_style": "compact",
+              "elements": [
+                {
+                  "title": "Classic T-Shirt Collection",
+                  "subtitle": "See all our colors",
+                  "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                  "buttons": [
+                    {
+                      "title": "View",
+                      "type": "web_url",
+                      "url": "https://peterssendreceiveapp.ngrok.io/collection",
+                      "messenger_extensions": true,
+                      "webview_height_ratio": "tall",
+                      "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                    }
+                  ]
+                },
+                {
+                  "title": "Classic White T-Shirt",
+                  "subtitle": "See all our colors",
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://peterssendreceiveapp.ngrok.io/view?item=100",
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                  }
+                },
+                {
+                  "title": "Classic Blue T-Shirt",
+                  "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+                  "subtitle": "100% Cotton, 200% Comfortable",
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://peterssendreceiveapp.ngrok.io/view?item=101",
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                  },
+                  "buttons": [
+                    {
+                      "title": "Shop Now",
+                      "type": "web_url",
+                      "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
+                      "messenger_extensions": true,
+                      "webview_height_ratio": "tall",
+                      "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                    }
+                  ]
+                }
+              ],
+               "buttons": [
+                {
+                  "title": "View More",
+                  "type": "postback",
+                  "payload": "payload"
+                }
+              ]
+            }
+          }
+        }
+      };
+      callSendAPI(messageData);
+    }
 
   function callSendAPI(messageData) {
     request({
