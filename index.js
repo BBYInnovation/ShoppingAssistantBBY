@@ -593,7 +593,7 @@ function sendPrinterDetails(recipientId) {
                       "url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800",
                       "messenger_extensions": true,
                       "webview_height_ratio": "compact",
-                      "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
+                      "fallback_url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800"
                     }
                   ]
                 }
