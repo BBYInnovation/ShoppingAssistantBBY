@@ -88,13 +88,6 @@ app.get('/setupGetStartedButton',function(req,res){
     setupGetStartedButton(res);
 });
 
-app.get('/getStoreDetails',function(req,res) {
-  var bby = require('bestbuy')('2u4r6g4hxahgcfpv54tr62bc');
-  bby.stores('postalCode=55423', {show: 'storeId,storeType,name,city,region'}).then(function(data){
-    console.log(data);
-  });
-});
-
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
@@ -495,12 +488,6 @@ function sendPrinterDetails(recipientId) {
     var lat = data.postback.data.lat;
     var long = data.postback.data.long;
     console.log('Provided Lat and long are: ',lat, long);
-    var bby = require('bestbuy')('2u4r6g4hxahgcfpv54tr62bc');
-    var position = 'area(' + lat + '-' + long + ',10)';
-    console.log('position: ', position);
-    bby.stores(position,{show:'storeId,storeType,name', pageSize: 2}).then(function(data){
-      console.log('Store Details: \n',data);
-    });
     var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
               + "location=" + lat + "," + long
               + "&radius=10000&type=Retail&keyword=Best%20Buy"
