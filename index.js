@@ -557,7 +557,7 @@ function sendPrinterDetails(recipientId) {
                 {
                   "title": "Classic T-Shirt Collection",
                   "subtitle": "See all our colors",
-                  "image_url": "https://peterssendreceiveapp.ngrok.io/img/collection.png",
+                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5119/5119600_sd.jpg;maxHeight=550;maxWidth=642",
                   "buttons": [
                     {
                       "title": "View",
@@ -582,7 +582,7 @@ function sendPrinterDetails(recipientId) {
                 },
                 {
                   "title": "Classic Blue T-Shirt",
-                  "image_url": "https://peterssendreceiveapp.ngrok.io/img/blue-t-shirt.png",
+                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5119/5119600_sd.jpg;maxHeight=550;maxWidth=642",
                   "subtitle": "100% Cotton, 200% Comfortable",
                   "default_action": {
                     "type": "web_url",
