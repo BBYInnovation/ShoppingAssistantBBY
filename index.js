@@ -96,7 +96,8 @@ app.get('/whitelisting',function(req,res){
       "setting_type" : "domain_whitelisting",
       "whitelisted_domains":[
         "https://bbyshoppingassistant.herokuapp.com",
-        "https://pisces.bbystatic.com"
+        "https://pisces.bbystatic.com",
+        "https://www.bestbuy.com"
       ],
       "domain_action_type": "add"
     };
@@ -570,47 +571,14 @@ function sendPrinterDetails(recipientId) {
               "top_element_style": "compact",
               "elements": [
                 {
-                  "title": "Classic T-Shirt Collection",
-                  "subtitle": "See all our colors",
-                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5119/5119600_sd.jpg;maxHeight=550;maxWidth=642",
+                  "title": "Brother - HL-L2380DW Wireless Black-and-White 3-in-1 Laser Printer - Black",
+                  "subtitle": "Model: HL-L2380DW   SKU: 8161037",
+                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/8161/8161037_sa.jpg;maxHeight=1000;maxWidth=1000",
                   "buttons": [
                     {
                       "title": "View",
                       "type": "web_url",
-                      "url": "https://bbyshoppingassistant.herokuapp.com/fallback",
-                      "messenger_extensions": true,
-                      "webview_height_ratio": "tall",
-                      "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
-                    }
-                  ]
-                },
-                {
-                  "title": "Classic White T-Shirt",
-                  "subtitle": "See all our colors",
-                  "default_action": {
-                    "type": "web_url",
-                    "url": "https://bbyshoppingassistant.herokuapp.com/fallback",
-                    "messenger_extensions": true,
-                    "webview_height_ratio": "tall",
-                    "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
-                  }
-                },
-                {
-                  "title": "Classic Blue T-Shirt",
-                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/5119/5119600_sd.jpg;maxHeight=550;maxWidth=642",
-                  "subtitle": "100% Cotton, 200% Comfortable",
-                  "default_action": {
-                    "type": "web_url",
-                    "url": "https://bbyshoppingassistant.herokuapp.com/fallback",
-                    "messenger_extensions": true,
-                    "webview_height_ratio": "tall",
-                    "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
-                  },
-                  "buttons": [
-                    {
-                      "title": "Shop Now",
-                      "type": "web_url",
-                      "url": "https://bbyshoppingassistant.herokuapp.com/fallback",
+                      "url": "https://www.bestbuy.com/site/brother-hl-l2380dw-wireless-black-and-white-3-in-1-laser-printer-black/8161037.p?skuId=8161037",
                       "messenger_extensions": true,
                       "webview_height_ratio": "tall",
                       "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
@@ -622,7 +590,7 @@ function sendPrinterDetails(recipientId) {
                 {
                   "title": "View More",
                   "type": "postback",
-                  "payload": "payload"
+                  "payload": "View_More"
                 }
               ]
             }
