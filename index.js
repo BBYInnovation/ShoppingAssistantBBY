@@ -495,6 +495,11 @@ function sendPrinterDetails(recipientId) {
     var lat = data.postback.data.lat;
     var long = data.postback.data.long;
     console.log('Provided Lat and long are: ',lat, long);
+    var bby = require('bestbuy')('2u4r6g4hxahgcfpv54tr62bc');
+    var position = 'lat=' + lat + ',lng=' + long;
+    bby.stores(position, {show: 'storeId,storeType,name,city,region'}).then(function(data){
+      console.log(data);
+    });
     var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
               + "location=" + lat + "," + long
               + "&radius=10000&type=Retail&keyword=Best%20Buy"
