@@ -91,7 +91,7 @@ app.get('/setupGetStartedButton',function(req,res){
     setupGetStartedButton(res);
 });
 
-app.get('/fallback',function(req,res){
+app.get('/whitelisting',function(req,res){
     var messageData = {
       "setting_type" : "domain_whitelisting",
       "whitelisted_domains":[
@@ -102,6 +102,10 @@ app.get('/fallback',function(req,res){
     };
     url = 'https://graph.facebook.com/v2.6/me/messenger_profile';
     callSendAPI(messageData);
+    console.log('whitelisting');
+});
+
+app.get('/fallback',function(req,res){
     console.log('Fallback');
 });
 
@@ -630,7 +634,7 @@ function sendPrinterDetails(recipientId) {
 
   function callSendAPI(messageData) {
     request({
-      uri: url,
+      uri: 'https://graph.facebook.com/v2.6/me/messages',
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: 'POST',
       json: messageData
