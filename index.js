@@ -442,7 +442,7 @@ function askChatBotRatingFallback (appAi) {
 
 function retrieveRating (appAi) {
   console.log("Inside retrieveRating");
-  appAi.tell('Thanks For the review. \n Have a great day. :)');
+  appAi.tell('Thanks For the review. :) \n Have a great day. :)');
 }
 
 function endIntent (appAi) {
