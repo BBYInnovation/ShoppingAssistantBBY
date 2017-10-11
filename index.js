@@ -578,7 +578,8 @@ function sendPrinterDetails(recipientId) {
                     {
                       type: "web_url",
                       "url": "https://www.bestbuy.com/site/brother-hl-l2380dw-wireless-black-and-white-3-in-1-laser-printer-black/8161037.p?skuId=8161037",
-                      title: "Open Web URL"
+                      title: "View Item",
+                      "webview_height_ratio": "compact"
                     }
                   ]
                 },
