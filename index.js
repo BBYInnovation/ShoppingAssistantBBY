@@ -91,6 +91,13 @@ app.get('/setupGetStartedButton',function(req,res){
 });
 
 app.get('/fallback',function(req,res){
+    var messageData = {
+      "whitelisted_domains":[
+        "https://bbyshoppingassistant.herokuapp.com",
+        "https://pisces.bbystatic.com"
+      ]
+    };
+    callSendAPI(messageData);
     console.log('Fallback');
 });
 
