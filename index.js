@@ -578,8 +578,7 @@ function sendPrinterDetails(recipientId) {
                     {
                       type: "web_url",
                       "url": "https://www.bestbuy.com/site/brother-hl-l2380dw-wireless-black-and-white-3-in-1-laser-printer-black/8161037.p?skuId=8161037",
-                      title: "View Item",
-                      "webview_height_ratio": "compact"
+                      title: "View Item"
                     }
                   ]
                 },
@@ -593,7 +592,7 @@ function sendPrinterDetails(recipientId) {
                       "type": "web_url",
                       "url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800",
                       "messenger_extensions": true,
-                      "webview_height_ratio": "tall",
+                      "webview_height_ratio": "compact",
                       "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
                     }
                   ]
