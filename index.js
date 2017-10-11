@@ -31,6 +31,7 @@ const GET_TOP_FIVE_ITEMS = 'GetTopFiveItems';
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
 var data = '';
+var url = 'https://graph.facebook.com/v2.6/me/messages';
 
 app.set('port', process.env.PORT || 5000);
 app.set('view engine', 'ejs');
@@ -99,6 +100,7 @@ app.get('/fallback',function(req,res){
       ],
       "domain_action_type": "add"
     };
+    url = 'https://graph.facebook.com/v2.6/me/messenger_profile';
     callSendAPI(messageData);
     console.log('Fallback');
 });
@@ -628,7 +630,7 @@ function sendPrinterDetails(recipientId) {
 
   function callSendAPI(messageData) {
     request({
-      uri: 'https://graph.facebook.com/v2.6/me/messages',
+      uri: url,
       qs: { access_token: PAGE_ACCESS_TOKEN },
       method: 'POST',
       json: messageData
