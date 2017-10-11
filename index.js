@@ -88,12 +88,12 @@ app.get('/setupGetStartedButton',function(req,res){
     setupGetStartedButton(res);
 });
 
-app.get('/getStoreDetails',function(req,res)) {
+app.get('/getStoreDetails',function(req,res) {
   var bby = require('bestbuy')('YourAPIKey');
   bby.stores('postalCode=55423', {show: 'storeId,storeType,name,city,region'}).then(function(data){
     console.log(data);
   });
-}
+});
 
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
