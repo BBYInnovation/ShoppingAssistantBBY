@@ -90,6 +90,10 @@ app.get('/setupGetStartedButton',function(req,res){
     setupGetStartedButton(res);
 });
 
+app.get('/fallback',function(req,res){
+    console.log('Fallback');
+});
+
 app.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
@@ -558,10 +562,10 @@ function sendPrinterDetails(recipientId) {
                     {
                       "title": "View",
                       "type": "web_url",
-                      "url": "https://peterssendreceiveapp.ngrok.io/collection",
+                      "url": "https://bbyshoppingassistant.herokuapp.com/fallback",
                       "messenger_extensions": true,
                       "webview_height_ratio": "tall",
-                      "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                      "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
                     }
                   ]
                 },
@@ -570,10 +574,10 @@ function sendPrinterDetails(recipientId) {
                   "subtitle": "See all our colors",
                   "default_action": {
                     "type": "web_url",
-                    "url": "https://peterssendreceiveapp.ngrok.io/view?item=100",
+                    "url": "https://bbyshoppingassistant.herokuapp.com/fallback",
                     "messenger_extensions": true,
                     "webview_height_ratio": "tall",
-                    "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                    "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
                   }
                 },
                 {
@@ -582,19 +586,19 @@ function sendPrinterDetails(recipientId) {
                   "subtitle": "100% Cotton, 200% Comfortable",
                   "default_action": {
                     "type": "web_url",
-                    "url": "https://peterssendreceiveapp.ngrok.io/view?item=101",
+                    "url": "https://bbyshoppingassistant.herokuapp.com/fallback",
                     "messenger_extensions": true,
                     "webview_height_ratio": "tall",
-                    "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                    "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
                   },
                   "buttons": [
                     {
                       "title": "Shop Now",
                       "type": "web_url",
-                      "url": "https://peterssendreceiveapp.ngrok.io/shop?item=101",
+                      "url": "https://bbyshoppingassistant.herokuapp.com/fallback",
                       "messenger_extensions": true,
                       "webview_height_ratio": "tall",
-                      "fallback_url": "https://peterssendreceiveapp.ngrok.io/"
+                      "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
                     }
                   ]
                 }
