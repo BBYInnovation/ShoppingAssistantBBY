@@ -578,22 +578,38 @@ function sendPrinterDetails(recipientId) {
                     {
                       type: "web_url",
                       "url": "https://www.bestbuy.com/site/brother-hl-l2380dw-wireless-black-and-white-3-in-1-laser-printer-black/8161037.p?skuId=8161037",
-                      title: "View Item"
+                      title: "View"
                     }
                   ]
                 },
                 {
                   "title": "HP - LaserJet Pro m452dn Color Printer - White",
-                  "subtitle": "Model: CF389A#BGJSKU: 4420800",
+                  "subtitle": "Model: CF389A#BGJ  SKU: 4420800",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4420/4420800_sd.jpg;maxHeight=1000;maxWidth=1000",
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800",
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800"
+                  },
                   "buttons": [
                     {
                       "title": "View",
                       "type": "web_url",
-                      "url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800",
-                      "messenger_extensions": true,
-                      "webview_height_ratio": "compact",
-                      "fallback_url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800"
+                      "url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800"
+                    }
+                  ]
+                },
+                {
+                  "title": "Epson - Expression Photo XP-8500 Small-in-One Wireless All-In-One Printer",
+                  "subtitle": "Model: EPSON EXPRESSION XP-8500 C11CG  SKU: 6083603",
+                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6083/6083603_sd.jpg;maxHeight=1000;maxWidth=1000",
+                  "buttons": [
+                    {
+                      "title": "View",
+                      "type": "web_url",
+                      "url": "https://www.bestbuy.com/site/epson-expression-photo-xp-8500-small-in-one-wireless-all-in-one-printer/6083603.p?skuId=6083603"
                     }
                   ]
                 }
