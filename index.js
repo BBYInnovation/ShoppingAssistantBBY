@@ -572,7 +572,7 @@ function sendPrinterDetails(recipientId) {
               "elements": [
                 {
                   "title": "Brother - HL-L2380DW Wireless Black-and-White 3-in-1 Laser Printer - Black",
-                  "subtitle": "Model: HL-L2380DW   SKU: 8161037  Price: $99.99",
+                  "subtitle": "Model: HL-L2380DW   SKU: 8161037  \nPrice: $99.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/8161/8161037_sa.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
@@ -584,7 +584,7 @@ function sendPrinterDetails(recipientId) {
                 },
                 {
                   "title": "HP - LaserJet Pro m452dn Color Printer - White",
-                  "subtitle": "Model: CF389A#BGJ  SKU: 4420800  Price: $299.99",
+                  "subtitle": "Model: CF389A#BGJ  SKU: 4420800  \nPrice: $299.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4420/4420800_sd.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
@@ -596,7 +596,7 @@ function sendPrinterDetails(recipientId) {
                 },
                 {
                   "title": "Epson - Expression Photo XP-8500 Small-in-One Wireless All-In-One Printer",
-                  "subtitle": "Model: EPSON EXPRESSION XP-8500 C11CG  SKU: 6083603 Price: $249.99",
+                  "subtitle": "Model: EPSON EXPRESSION XP-8500 C11CG  SKU: 6083603 \nPrice: $249.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6083/6083603_sd.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
@@ -609,7 +609,7 @@ function sendPrinterDetails(recipientId) {
                 ,
                 {
                   "title": "Brother - DCP-L2540DW Wireless Black-and-White All-In-One Printer - Black",
-                  "subtitle": "Model: DCP-L2540DW  SKU: 9093201 Price: $124.99",
+                  "subtitle": "Model: DCP-L2540DW  SKU: 9093201 \nPrice: $124.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/9093/9093201_sa.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
