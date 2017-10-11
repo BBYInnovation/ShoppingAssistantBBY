@@ -496,9 +496,10 @@ function sendPrinterDetails(recipientId) {
     var long = data.postback.data.long;
     console.log('Provided Lat and long are: ',lat, long);
     var bby = require('bestbuy')('2u4r6g4hxahgcfpv54tr62bc');
-    var position = 'lat=' + lat + ',lng=' + long;
-    bby.stores(position, {show: 'storeId,storeType,name,city,region'}).then(function(data){
-      console.log(data);
+    var position = 'area(' + lat + '-' + long + ',10)';
+    console.log('position: ', position);
+    bby.stores(position,{show:'storeId,storeType,name', pageSize: 2}).then(function(data){
+      console.log('Store Details: \n',data);
     });
     var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?"
               + "location=" + lat + "," + long
