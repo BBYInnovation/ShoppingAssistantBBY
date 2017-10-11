@@ -552,7 +552,7 @@ function sendPrinterDetails(recipientId) {
           }
           //
       } else {
-        appAi.tell("Sorry, no stores near by.");
+        appAi.tell("Sorry, no stores near by. \nIs there anything else I can help you with?");
       }
     });
   }
