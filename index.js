@@ -26,7 +26,7 @@ const CHECKOUT_FALLBACK = 'BuyPrinter.PrinterCheckOut.fallback';
 const END_CHAT = 'BuyPrinter.PrinterEndChat';
 const GET_LOCATION = 'GetLocation';
 const RETRIEVE_LOCATION = 'RetrieveLocation';
-const GET_TOP_FIVE_ITEMS = 'GetTopFiveItems';
+const GET_TOP_RATED_PRODUCT = 'GetTopRatedProduct';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
@@ -76,7 +76,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(END_CHAT, endIntent);
   actionMap.set(GET_LOCATION, getLocation);
   actionMap.set(RETRIEVE_LOCATION, retrieveLocation);
-  actionMap.set(GET_TOP_FIVE_ITEMS, getTopFiveItems);
+  actionMap.set(GET_TOP_RATED_PRODUCT, getTopRatedProduct);
 
   appAi.handleRequest(actionMap);
 });
@@ -557,7 +557,7 @@ function sendPrinterDetails(recipientId) {
     });
   }
 
-  function getTopFiveItems(appAi) {
+  function getTopRatedProduct(appAi) {
     console.log("Inside getTopFiveItems");
     messageData = {
       recipient: {
@@ -572,19 +572,19 @@ function sendPrinterDetails(recipientId) {
               "elements": [
                 {
                   "title": "Brother - HL-L2380DW Wireless Black-and-White 3-in-1 Laser Printer - Black",
-                  "subtitle": "Model: HL-L2380DW   SKU: 8161037",
+                  "subtitle": "Model: HL-L2380DW   SKU: 8161037  Price: $99.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/8161/8161037_sa.jpg;maxHeight=1000;maxWidth=1000",
-                  "buttons": [
-                    {
-                      type: "web_url",
-                      "url": "https://www.bestbuy.com/site/brother-hl-l2380dw-wireless-black-and-white-3-in-1-laser-printer-black/8161037.p?skuId=8161037",
-                      title: "View"
-                    }
-                  ]
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://www.bestbuy.com/site/brother-hl-l2380dw-wireless-black-and-white-3-in-1-laser-printer-black/8161037.p?skuId=8161037",
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://www.bestbuy.com/site/brother-hl-l2380dw-wireless-black-and-white-3-in-1-laser-printer-black/8161037.p?skuId=8161037"
+                  }
                 },
                 {
                   "title": "HP - LaserJet Pro m452dn Color Printer - White",
-                  "subtitle": "Model: CF389A#BGJ  SKU: 4420800",
+                  "subtitle": "Model: CF389A#BGJ  SKU: 4420800  Price: $299.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4420/4420800_sd.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
@@ -592,33 +592,39 @@ function sendPrinterDetails(recipientId) {
                     "messenger_extensions": true,
                     "webview_height_ratio": "tall",
                     "fallback_url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800"
-                  },
-                  "buttons": [
-                    {
-                      "title": "View",
-                      "type": "web_url",
-                      "url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800"
-                    }
-                  ]
+                  }
                 },
                 {
                   "title": "Epson - Expression Photo XP-8500 Small-in-One Wireless All-In-One Printer",
-                  "subtitle": "Model: EPSON EXPRESSION XP-8500 C11CG  SKU: 6083603",
+                  "subtitle": "Model: EPSON EXPRESSION XP-8500 C11CG  SKU: 6083603 Price: $249.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6083/6083603_sd.jpg;maxHeight=1000;maxWidth=1000",
-                  "buttons": [
-                    {
-                      "title": "View",
-                      "type": "web_url",
-                      "url": "https://www.bestbuy.com/site/epson-expression-photo-xp-8500-small-in-one-wireless-all-in-one-printer/6083603.p?skuId=6083603"
-                    }
-                  ]
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://www.bestbuy.com/site/epson-expression-photo-xp-8500-small-in-one-wireless-all-in-one-printer/6083603.p?skuId=6083603",
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://www.bestbuy.com/site/epson-expression-photo-xp-8500-small-in-one-wireless-all-in-one-printer/6083603.p?skuId=6083603"
+                  }
+                }
+                ,
+                {
+                  "title": "Brother - DCP-L2540DW Wireless Black-and-White All-In-One Printer - Black",
+                  "subtitle": "Model: DCP-L2540DW  SKU: 9093201 Price: $124.99",
+                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/9093/9093201_sa.jpg;maxHeight=1000;maxWidth=1000",
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://www.bestbuy.com/site/brother-dcp-l2540dw-wireless-black-and-white-all-in-one-printer-black/9093201.p?skuId=9093201",
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://www.bestbuy.com/site/brother-dcp-l2540dw-wireless-black-and-white-all-in-one-printer-black/9093201.p?skuId=9093201"
+                  }
                 }
               ],
                "buttons": [
                 {
-                  "title": "View More",
+                  "title": "Show More",
                   "type": "postback",
-                  "payload": "View_More"
+                  "payload": "Show_More_Product"
                 }
               ]
             }
