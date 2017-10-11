@@ -584,6 +584,21 @@ function sendPrinterDetails(recipientId) {
                       "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
                     }
                   ]
+                },
+                {
+                  "title": "HP - LaserJet Pro m452dn Color Printer - White",
+                  "subtitle": "Model: CF389A#BGJSKU: 4420800",
+                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4420/4420800_sd.jpg;maxHeight=1000;maxWidth=1000",
+                  "buttons": [
+                    {
+                      "title": "View",
+                      "type": "web_url",
+                      "url": "https://www.bestbuy.com/site/hp-laserjet-pro-m452dn-color-printer-white/4420800.p?skuId=4420800",
+                      "messenger_extensions": true,
+                      "webview_height_ratio": "tall",
+                      "fallback_url": "https://bbyshoppingassistant.herokuapp.com/fallback"
+                    }
+                  ]
                 }
               ],
                "buttons": [
