@@ -92,10 +92,12 @@ app.get('/setupGetStartedButton',function(req,res){
 
 app.get('/fallback',function(req,res){
     var messageData = {
+      "setting_type" : "domain_whitelisting",
       "whitelisted_domains":[
         "https://bbyshoppingassistant.herokuapp.com",
         "https://pisces.bbystatic.com"
-      ]
+      ],
+      "domain_action_type": "add"
     };
     callSendAPI(messageData);
     console.log('Fallback');
