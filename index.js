@@ -27,6 +27,9 @@ const END_CHAT = 'BuyPrinter.PrinterEndChat';
 const GET_LOCATION = 'GetLocation';
 const RETRIEVE_LOCATION = 'RetrieveLocation';
 const GET_TOP_RATED_PRODUCT = 'GetTopRatedProduct';
+const CHATBOT_RATING_YES = 'ChatBotRatingYes';
+const CHATBOT_RATING_YES_FALLBACK = 'ChatBotRatingYes.fallback';
+const RETRIEVE_RATING = 'RetrieveRating';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
@@ -77,6 +80,9 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(GET_LOCATION, getLocation);
   actionMap.set(RETRIEVE_LOCATION, retrieveLocation);
   actionMap.set(GET_TOP_RATED_PRODUCT, getTopRatedProduct);
+  actionMap.set(CHATBOT_RATING_YES, askChatBotRating);
+  actionMap.set(CHATBOT_RATING_YES_FALLBACK, askChatBotRatingFallback);
+  actionMap.set(RETRIEVE_RATING, retrieveRating);
 
   appAi.handleRequest(actionMap);
 });
@@ -424,9 +430,44 @@ function checkOutFallback (appAi) {
   appAi.tell('Sorry, I didnt get that. \nIs there anything else I can help you with?');
 }
 
+function askChatBotRating (appAi) {
+  console.log("Inside askChatBotRating");
+  appAi.tell('Please rate our chat experience in scale of 1 to 10, with 1 being the worst and 10 being the best.');
+}
+
+function askChatBotRatingFallback (appAi) {
+  console.log("Inside askChatBotRatingFallback");
+  appAi.tell('Sorry, I didnt get that. \nPlease rate our chat experience in scale of 1 to 10, with 1 being the worst and 10 being the best.');
+}
+
+function retrieveRating (appAi) {
+  console.log("Inside retrieveRating");
+  appAi.tell('Thanks For the review. \n Have a great day. :)');
+}
+
 function endIntent (appAi) {
   console.log("Inside endIntent");
-  appAi.tell('Thanks for shopping with Best Buy.:) \nHave a great day! ');
+  var messageData = {
+    recipient: {
+      id: senderID
+    },
+    "message":{
+      "text": "Thanks for shopping with Best Buy.:) \nCan you please rate our ChatBot service?",
+      "quick_replies":[
+        {
+          "content_type":"text",
+          "title":"YES",
+          "payload":"CHATBOT_RATING_YES"
+        },
+        {
+          "content_type":"text",
+          "title":"NO",
+          "payload":"CHATBOT_RATING_NO"
+        }]
+    }
+  };
+
+  callSendAPI(messageData);
 }
 
 function sendPrinterDetails(recipientId) {
