@@ -125,7 +125,13 @@ app.listen(app.get('port'), function() {
 
 function welcomeIntent (appAi) {
   console.log("Inside welcomeIntent");
-  appAi.tell('I am your Best Buy In-Home Assistant. \nAsk me about Electronic Gadgets and Home appliances. \nHow may I help you today?');
+  appAi.tell('I am your Best Buy In-Home Assistant. \nYou can ask me about: '
+            + '\n1. Buying any electronic gadget'
+            + '\n2. Deals of the day'
+            + '\n3. Locate your nearest Best Buy store'
+            + '\n4. Get to know the store timings'
+            + '\n5. About the trending products by category'
+            + '\nFor example, you can say, I would like to buy a printer.');
 }
 
 function productPrinter (appAi) {
