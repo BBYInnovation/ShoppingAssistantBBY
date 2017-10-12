@@ -362,12 +362,12 @@ function chooseWiFiTypeFallback (appAi) {
         {
           "content_type":"text",
           "title":"YES",
-          "payload":"PRINTER_SELECT_YES"
+          "payload":"ADD_TO_CART_YES"
         },
         {
           "content_type":"text",
           "title":"NO",
-          "payload":"PRINTER_SELECT_NO"
+          "payload":"ADD_TO_CART_NO"
         },
         {
           "content_type":"text",
@@ -519,12 +519,12 @@ function sendPrinterDetails(recipientId) {
           {
             "content_type":"text",
             "title":"YES",
-            "payload":"PRINTER_SELECT_YES"
+            "payload":"ADD_TO_CART_YES"
           },
           {
             "content_type":"text",
             "title":"NO",
-            "payload":"PRINTER_SELECT_NO"
+            "payload":"ADD_TO_CART_NO"
           },
           {
             "content_type":"text",
