@@ -30,6 +30,7 @@ const GET_TOP_RATED_PRODUCT = 'GetTopRatedProduct';
 const CHATBOT_RATING_YES = 'ChatBotRatingYes';
 const CHATBOT_RATING_YES_FALLBACK = 'ChatBotRatingYes.fallback';
 const RETRIEVE_RATING = 'RetrieveRating';
+const GET_REVIEW_COMMENTS = 'getReviewComments';
 const DEAL_OF_THE_DAY = 'DealOfTheDay';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
@@ -83,7 +84,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(GET_TOP_RATED_PRODUCT, getTopRatedProduct);
   actionMap.set(CHATBOT_RATING_YES, askChatBotRating);
   actionMap.set(CHATBOT_RATING_YES_FALLBACK, askChatBotRatingFallback);
-  actionMap.set(RETRIEVE_RATING, retrieveRating);
+  actionMap.set(GET_REVIEW_COMMENTS, getReviewComments);
   actionMap.set(DEAL_OF_THE_DAY, dealOfTheDay);
 
   appAi.handleRequest(actionMap);
@@ -138,12 +139,12 @@ function productPrinter (appAi) {
       "quick_replies":[
         {
           "content_type":"text",
-          "title":"For Personal use",
+          "title":"Personal",
           "payload":"PRINTER_USE_TYPE_PERSONAL"
         },
         {
           "content_type":"text",
-          "title":"For Professional use",
+          "title":"Professional",
           "payload":"PRINTER_USE_TYPE_PROFESSIONAL"
         }]
     }
@@ -163,12 +164,12 @@ function productPrinterFallback (appAi) {
       "quick_replies":[
         {
           "content_type":"text",
-          "title":"For Personal use",
+          "title":"Personal",
           "payload":"PRINTER_USE_TYPE_PERSONAL"
         },
         {
           "content_type":"text",
-          "title":"For Professional use",
+          "title":"Professional",
           "payload":"PRINTER_USE_TYPE_PROFESSIONAL"
         }]
     }
@@ -244,7 +245,7 @@ function chooseModerateUse (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Would you also want the printer to scan pages?",
+      "text": "Would you require a printer with built-in scanner?",
       "quick_replies":[
         {
           "content_type":"text",
@@ -269,7 +270,7 @@ function chooseModerateUseFallback (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Sorry, I didnt get that. \nWould you also want the printer to scan pages?",
+      "text": "Sorry, I didnt get that. \nWould you require a printer with built-in scanner?",
       "quick_replies":[
         {
           "content_type":"text",
@@ -434,16 +435,16 @@ function checkOutFallback (appAi) {
 
 function askChatBotRating (appAi) {
   console.log("Inside askChatBotRating");
-  appAi.tell('Please rate our chat experience in scale of 1 to 10, with 1 being the worst and 10 being the best.');
+  appAi.tell('Please let us know how likely are you to recommend BestBuy to one of your Friend or Colleague. \nRate in scale of 1 to 10, with 1 being the worst and 10 being the best.');
 }
 
 function askChatBotRatingFallback (appAi) {
   console.log("Inside askChatBotRatingFallback");
-  appAi.tell('Sorry, I didnt get that. \nPlease rate our chat experience in scale of 1 to 10, with 1 being the worst and 10 being the best.');
+  appAi.tell('Sorry, I didnt get that. \nPlease let us know how likely are you to recommend BestBuy to one of your Friend or Colleague. \nRate in scale of 1 to 10, with 1 being the worst and 10 being the best.');
 }
 
-function retrieveRating (appAi) {
-  console.log("Inside retrieveRating");
+function getReviewComments (appAi) {
+  console.log("Inside getReviewComments");
   appAi.tell('Thanks For the review. :) \n Have a great day. :)');
 }
 
@@ -454,7 +455,7 @@ function endIntent (appAi) {
       id: senderID
     },
     "message":{
-      "text": "Thanks for shopping with Best Buy.:) \nCan you please rate our ChatBot service?",
+      "text": "Thanks for shopping with Best Buy.:) \nCan you please spare a minute to rate our service?",
       "quick_replies":[
         {
           "content_type":"text",
