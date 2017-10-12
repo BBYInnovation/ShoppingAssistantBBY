@@ -30,6 +30,7 @@ const GET_TOP_RATED_PRODUCT = 'GetTopRatedProduct';
 const CHATBOT_RATING_YES = 'ChatBotRatingYes';
 const CHATBOT_RATING_YES_FALLBACK = 'ChatBotRatingYes.fallback';
 const RETRIEVE_RATING = 'RetrieveRating';
+const DEAL_OF_THE_DAY = 'DealOfTheDay';
 
 const PAGE_ACCESS_TOKEN = 'EAABsZACZBoOH4BAOcobE9Vu5Q0LlBL0b7O0duqNkYBpFFXoZBGUXoacs6s14ZAxOUZCdL1Nryyw5cAGWpJpoZCVoR5CE2ZB35I7zKNKne59O4xAsXimAX5oC9nQZBFHtG5EB1j5bJrCwiPUmxNskgPR2ju7RGxgkn5rXtqXiZBZADCPgZDZD';
 var senderID = '';
@@ -83,6 +84,7 @@ app.post('/helloHttp', function(request, response) {
   actionMap.set(CHATBOT_RATING_YES, askChatBotRating);
   actionMap.set(CHATBOT_RATING_YES_FALLBACK, askChatBotRatingFallback);
   actionMap.set(RETRIEVE_RATING, retrieveRating);
+  actionMap.set(DEAL_OF_THE_DAY, dealOfTheDay);
 
   appAi.handleRequest(actionMap);
 });
@@ -613,7 +615,7 @@ function sendPrinterDetails(recipientId) {
               "elements": [
                 {
                   "title": "Brother - HL-L2380DW Wireless Black-and-White 3-in-1 Laser Printer - Black",
-                  "subtitle": "Model: HL-L2380DW   SKU: 8161037  \nPrice: $99.99",
+                  "subtitle": "Model: HL-L2380DW   \nSKU: 8161037  \nPrice: $99.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/8161/8161037_sa.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
@@ -625,7 +627,7 @@ function sendPrinterDetails(recipientId) {
                 },
                 {
                   "title": "HP - LaserJet Pro m452dn Color Printer - White",
-                  "subtitle": "Model: CF389A#BGJ  SKU: 4420800  \nPrice: $299.99",
+                  "subtitle": "Model: CF389A#BGJ  \nSKU: 4420800  \nPrice: $299.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/4420/4420800_sd.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
@@ -637,7 +639,7 @@ function sendPrinterDetails(recipientId) {
                 },
                 {
                   "title": "Epson - Expression Photo XP-8500 Small-in-One Wireless All-In-One Printer",
-                  "subtitle": "Model: EPSON EXPRESSION XP-8500 C11CG  SKU: 6083603 \nPrice: $249.99",
+                  "subtitle": "Model: EPSON EXPRESSION XP-8500 C11CG \nSKU: 6083603 \nPrice: $249.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6083/6083603_sd.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
@@ -650,7 +652,7 @@ function sendPrinterDetails(recipientId) {
                 ,
                 {
                   "title": "Brother - DCP-L2540DW Wireless Black-and-White All-In-One Printer - Black",
-                  "subtitle": "Model: DCP-L2540DW  SKU: 9093201 \nPrice: $124.99",
+                  "subtitle": "Model: DCP-L2540DW  \nSKU: 9093201 \nPrice: $124.99",
                   "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/9093/9093201_sa.jpg;maxHeight=1000;maxWidth=1000",
                   "default_action": {
                     "type": "web_url",
@@ -674,6 +676,39 @@ function sendPrinterDetails(recipientId) {
       };
       callSendAPI(messageData);
     }
+
+  function dealOfTheDay(appAi) {
+    console.log("Inside dealOfTheDay");
+    messageData = {
+      recipient: {
+        id: senderID
+      },
+      "message": {
+          "attachment": {
+            "type": "template",
+            "payload": {
+              "template_type": "list",
+              "top_element_style": "large",
+              "elements": [
+                {
+                  "title": "Dyson - Ball Multi Floor Bagless Upright Vacuum - Iron/Yellow",
+                  "subtitle": "Price: $199.99 \nSAVE $200 Was $399.99",
+                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/2498/2498029_sd.jpg;maxHeight=1000;maxWidth=1000",
+                  "default_action": {
+                    "type": "web_url",
+                    "url": "https://www.bestbuy.com/site/dyson-ball-multi-floor-bagless-upright-vacuum-iron-yellow/2498029.p?skuId=2498029",
+                    "messenger_extensions": true,
+                    "webview_height_ratio": "tall",
+                    "fallback_url": "https://www.bestbuy.com/site/dyson-ball-multi-floor-bagless-upright-vacuum-iron-yellow/2498029.p?skuId=2498029"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      };
+      callSendAPI(messageData);
+  }
 
   function callSendAPI(messageData) {
     request({
