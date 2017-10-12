@@ -683,31 +683,27 @@ function sendPrinterDetails(recipientId) {
       recipient: {
         id: senderID
       },
-      "message": {
-          "attachment": {
-            "type": "template",
-            "payload": {
-              "template_type": "list",
-              "top_element_style": "large",
-              "elements": [
-                {
-                  "title": "Dyson - Ball Multi Floor Bagless Upright Vacuum - Iron/Yellow",
-                  "subtitle": "Price: $199.99 \nSAVE $200 Was $399.99",
-                  "image_url": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/2498/2498029_sd.jpg;maxHeight=1000;maxWidth=1000",
-                  "default_action": {
-                    "type": "web_url",
-                    "url": "https://www.bestbuy.com/site/dyson-ball-multi-floor-bagless-upright-vacuum-iron-yellow/2498029.p?skuId=2498029",
-                    "messenger_extensions": true,
-                    "webview_height_ratio": "tall",
-                    "fallback_url": "https://www.bestbuy.com/site/dyson-ball-multi-floor-bagless-upright-vacuum-iron-yellow/2498029.p?skuId=2498029"
-                  }
-                }
-              ]
-            }
+      message: {
+        attachment: {
+          type: "template",
+          payload: {
+            template_type: "generic",
+            elements: [{
+              title: "Dyson - Ball Multi Floor Bagless Upright Vacuum - Iron/Yellow",
+              subtitle: "Price: $199.99 \nSAVE $200 Was $399.99",
+              item_url: "https://www.bestbuy.com/site/dyson-ball-multi-floor-bagless-upright-vacuum-iron-yellow/2498029.p?skuId=2498029",
+              image_url: "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/2498/2498029_sd.jpg;maxHeight=1000;maxWidth=1000",
+              buttons: [{
+                type: "web_url",
+                url: "https://www.bestbuy.com/site/dyson-ball-multi-floor-bagless-upright-vacuum-iron-yellow/2498029.p?skuId=2498029",
+                title: "Open Web URL"
+              }],
+            }]
           }
         }
-      };
-      callSendAPI(messageData);
+      }
+    };
+    callSendAPI(messageData);
   }
 
   function callSendAPI(messageData) {
